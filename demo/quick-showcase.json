@@ -1,0 +1,119 @@
+{
+  "version": 2,
+  "id": "quick-showcase",
+  "title": "KampungKaki · AI Showcase",
+  "maxMs": 92000,
+  "voice": {
+    "language": "english",
+    "seed": 281,
+    "reference": "voice_actors/english/7_juilliard"
+  },
+  "voices": {
+    "director": {
+      "label": "7_juilliard",
+      "language": "english",
+      "reference": "voice_actors/english/7_juilliard"
+    },
+    "resident": {
+      "label": "7_juilliard",
+      "language": "english",
+      "reference": "voice_actors/english/7_juilliard"
+    },
+    "responder": {
+      "label": "2_amateur",
+      "language": "english",
+      "reference": "voice_actors/english/2_amateur"
+    },
+    "ops": {
+      "label": "4_classically_trained",
+      "language": "english",
+      "reference": "voice_actors/english/4_classically_trained"
+    }
+  },
+  "scenes": [
+    {
+      "id": "qs-setup-1",
+      "voice": "director",
+      "speaker": "Director",
+      "narration": "Signing in a resident, a responder, and operations on one shared map."
+    },
+    {
+      "id": "qs-setup-2",
+      "voice": "director",
+      "speaker": "Director",
+      "narration": "Narration uses Qwen three text-to-speech with custom reference voices."
+    },
+    {
+      "id": "qs-setup-3",
+      "voice": "director",
+      "speaker": "Director",
+      "narration": "Our A I agents run on Ollama cloud MiniMax two point five models, and the stack will scale further."
+    },
+    {
+      "id": "qs-intro",
+      "voice": "director",
+      "speaker": "Director",
+      "narration": "Here is one real KampungKaki session: a medical emergency across three live roles on a single shared map."
+    },
+    {
+      "id": "qs-pelita",
+      "voice": "resident",
+      "speaker": "Mei Ling",
+      "narration": "Before anything escalates, I ask Pelita, our conditions agent, how my area is looking near the M R T exit."
+    },
+    {
+      "id": "qs-conditions",
+      "voice": "director",
+      "speaker": "Director",
+      "narration": "While Pelita thinks, the app pulls live readings from N E A and L T A, so rainfall and traffic light up right around Exit B."
+    },
+    {
+      "id": "qs-pelita-reply",
+      "voice": "director",
+      "speaker": "Director",
+      "narration": "Pelita turns those cached rain and traffic readings into one clear local answer, with no extra fetch needed."
+    },
+    {
+      "id": "qs-responder",
+      "voice": "responder",
+      "speaker": "Aisha",
+      "narration": "I am Aisha, a nearby responder, and I go on duty to declare medical and hazard support."
+    },
+    {
+      "id": "qs-sos",
+      "voice": "resident",
+      "speaker": "Mei Ling",
+      "narration": "An elderly man near the smoke collapses, so I send a Medical S O S, and the map locks onto our exact location."
+    },
+    {
+      "id": "qs-bekal",
+      "voice": "director",
+      "speaker": "Director",
+      "narration": "Mei Ling asks Bekal which A E D and hospital to use, while the map confirms the nearest ones around the incident."
+    },
+    {
+      "id": "qs-bekal-reply",
+      "voice": "director",
+      "speaker": "Director",
+      "narration": "Bekal returns the nearest A E D, an emergency hospital, and first-aid guidance, dropped onto the map as real pins."
+    },
+    {
+      "id": "qs-ops",
+      "voice": "ops",
+      "speaker": "Nadia",
+      "narration": "I am Nadia in ops. I verify reports on the shared map, declare notices, and broadcast warnings — I decide what is public and who gets sent."
+    },
+    {
+      "id": "qs-finale",
+      "voice": "director",
+      "speaker": "Director",
+      "narration": "One incident now lives in three synchronized maps, kept consistent by retained M Q T T topics."
+    },
+    {
+      "id": "qs-outro",
+      "voice": "director",
+      "speaker": "Director",
+      "narration": "That is KampungKaki: live map evidence, A I Kaki guidance, and coordinated response in about a minute."
+    }
+  ]
+}

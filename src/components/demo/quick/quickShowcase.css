@@ -1,0 +1,67 @@
+.kk-quick-root {
+  --kk-quick-paper: #f4f0e6;
+  --kk-quick-ink: #14120f;
+  --kk-quick-gold: #e8c547;
+  --kk-quick-coral: #ff6b4a;
+  --kk-quick-shadow: 6px 6px 0 rgba(20, 18, 15, 0.92);
+}
+
+.kk-quick-grain {
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.35), transparent 45%),
+    radial-gradient(circle at 80% 0%, rgba(232, 197, 71, 0.12), transparent 40%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 30%);
+}
+
+.kk-quick-stamp-enter {
+  animation: kkQuickStampIn 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.kk-quick-stamp-ring {
+  animation: kkQuickStampRing 1200ms ease-out both;
+}
+
+.kk-quick-card-enter {
+  animation: kkQuickCardIn 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.kk-quick-progress-ring {
+  transition: stroke-dashoffset 120ms linear;
+}
+
+@keyframes kkQuickStampIn {
+  0% {
+    opacity: 0;
+    transform: rotate(-12deg) scale(1.35);
+  }
+  55% {
+    opacity: 1;
+    transform: rotate(3deg) scale(0.98);
+  }
+  100% {
+    opacity: 0.92;
+    transform: rotate(-2deg) scale(1);
+  }
+}
+
+@keyframes kkQuickStampRing {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.6);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+}
+
+@keyframes kkQuickCardIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

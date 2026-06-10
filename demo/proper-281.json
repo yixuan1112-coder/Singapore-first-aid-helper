@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "id": "proper-281",
+  "note": "Storyboard for the proper (from-scratch) live demo. Narration is kept in sync with src/components/demo/LiveDirector.tsx narrate() calls. Rendered by scripts/proper-demo-voice.mjs into public/demo/voice-proper/.",
+  "voices": {
+    "director": { "language": "english", "reference": "voice_actors/english/7_juilliard" },
+    "meiling": { "language": "english", "reference": "voice_actors/english/3_warm" },
+    "aisha": { "language": "english", "reference": "voice_actors/english/2_amateur" },
+    "nadia": { "language": "english", "reference": "voice_actors/english/4_classically_trained" },
+    "aikaki": { "language": "english", "reference": "voice_actors/english/1_window" }
+  },
+  "scenes": [
+    { "id": "god-deploy", "voice": "director", "speaker": "Director", "narration": "This is not a video. I am opening three real users on one live map, then driving reports, responders, alerts, and case state through M Q T T." },
+    { "id": "resident-intro", "voice": "meiling", "speaker": "Mei Ling", "narration": "It is pouring at the M R T exit. An e bike is smoking at the covered choke point and people are crowding under shelter. I am asthmatic, so first I make sure my aid card is set." },
+    { "id": "responder-intro", "voice": "aisha", "speaker": "Aisha", "narration": "I am Aisha, a nearby community responder. I begin in lepak mode: no mission, no private details, and no false urgency until I choose to go on duty." },
+    { "id": "ops-intro", "voice": "nadia", "speaker": "Nadia", "narration": "I am Nadia in ops. I am not here to improvise heroics; I see reports, responders, cases, and map evidence, then decide what to publish and who to send." },
+    { "id": "resident-report", "voice": "aikaki", "speaker": "Pelita", "narration": "Before the emergency escalates, Mei Ling asks Pelita how the area looks. Pelita reads the map snapshot the app already refreshed: rain, air, traffic, and public safety layers." },
+    { "id": "responder-duty", "voice": "aisha", "speaker": "Aisha", "narration": "I am nearby, but the system should not page me just because I exist. I go on duty and declare medical plus hazard support." },
+    { "id": "resident-sos", "voice": "meiling", "speaker": "Mei Ling", "narration": "Now it is an emergency. An elderly man near the smoke has collapsed and is not responding properly. I am the witness, he is the casualty, and this needs a Medical S O S." },
+    { "id": "god-agents", "voice": "director", "speaker": "Director", "narration": "Now I add disposable witness reports, rain pressure, and A I responder agents. They support the S O S; they are not the emergency trigger." },
+    { "id": "propagation", "voice": "director", "speaker": "Director", "narration": "The same incident now exists in three maps. Mei Ling sees her S O S. Aisha receives a matched page. Nadia sees smoke reports and the live case forming." },
+    { "id": "responder-join", "voice": "aisha", "speaker": "Aisha", "narration": "Before I join, I see the category and location but not private medical details. Once I commit, the case room opens and the aid card becomes useful." },
+    { "id": "resident-relief", "voice": "meiling", "speaker": "Mei Ling", "narration": "This is the moment that matters. My map does not merely say help is coming. I can see responders moving toward me and an A E D runner assigned." },
+    { "id": "ops-verify", "voice": "nadia", "speaker": "Nadia", "narration": "The S O S is already live. The reports are supporting context, so I verify with the map before I broadcast: access, cameras, rain, A E Ds, and emergency hospitals." },
+    { "id": "ops-deploy-bot", "voice": "nadia", "speaker": "Nadia", "narration": "Now my job is coordination. Medical goes to the collapsed person, the A E D runner goes to the nearest device, and traffic access checks the road." },
+    { "id": "ops-broadcast", "voice": "nadia", "speaker": "Nadia", "narration": "The smoke and access risk are verified, so I warn people away from the station exit without exposing the private case room." },
+    { "id": "responder-offline", "voice": "aisha", "speaker": "Aisha", "narration": "I mark myself on scene while the connection is down. My phone keeps the retained update queued instead of lying to Mei Ling." },
+    { "id": "outcome", "voice": "director", "speaker": "Director", "narration": "Hospitals, A E Ds, traffic, cameras, weather, responders, chat, alerts, and state changes all served one story: map evidence plus M Q T T coordination." },
+    { "id": "cleanup", "voice": "director", "speaker": "Director", "narration": "This performance is complete. I will remove the bots, users, reports, case messages, alerts, presence, and logs created by this session." }
+  ]
+}

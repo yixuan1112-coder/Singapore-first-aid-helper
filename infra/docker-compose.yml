@@ -1,0 +1,77 @@
+# KampungKaki — the WHOLE stack in one command.
+#
+#   mosquitto : MQTT 5 broker. TCP 1883 (bridge/workers), WS 9001 (browsers).
+#   redis     : durable mirror of the CSOT.
+#   bridge    : FastAPI + MQTT — identity/join, presence, and the LIVE DEMO lifecycle.
+#   web       : the Vite server — React app + live demo (Director, personas, cutscenes,
+#               voice) + the api/ functions (gov-data proxies + AI agents).
+#
+# The web container reaches the host's Ollama daemon (the AI) via host.docker.internal.
+# Run it with ./start.sh (mac/linux) or .\start.ps1 (Windows) from the repo root —
+# those do the preflight checks first. Or directly:
+#   docker compose -f infra/docker-compose.yml up -d --build
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: kk-mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - mosquitto_data:/mosquitto/data
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: kk-redis
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+  bridge:
+    build: ../backend
+    container_name: kk-bridge
+    environment:
+      MQTT_HOST: mosquitto
+      MQTT_PORT: "1883"
+      REDIS_URL: redis://redis:6379
+      PORT: "8787"
+    ports:
+      - "8787:8787"
+    depends_on:
+      - mosquitto
+      - redis
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ..
+      dockerfile: Dockerfile.web
+    container_name: kk-web
+    environment:
+      # Reach the bridge container for realtime routes (/api/join, /api/demo/*, presence).
+      KK_BRIDGE_PROXY: http://bridge:8787
+      # The AI runs on the HOST Ollama daemon, not in a container.
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      KK_AI_MODEL: ${KK_AI_MODEL:-minimax-m2.5:cloud}
+    # Gov-data keys (DATAMALL_ACCOUNT_KEY, ONEMAP_API_KEY …). The start script
+    # guarantees this file exists by copying .env.example on first run.
+    env_file:
+      - ../.env.local
+    ports:
+      - "3000:3000"
+    extra_hosts:
+      # Lets the container resolve the host's Ollama on Linux (auto on Docker Desktop).
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - bridge
+    restart: unless-stopped
+
+volumes:
+  mosquitto_data:
+  redis_data:

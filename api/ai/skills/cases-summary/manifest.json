@@ -1,0 +1,21 @@
+{
+  "id": "cases-summary",
+  "version": "1.0.0",
+  "tier": 1,
+  "primitive": true,
+  "description": "Summarise the ongoing SOS cases (category, responders attached, how long waiting, status) from the live picture. Cache-only.",
+  "keywords": ["cases", "sos", "ongoing", "incidents", "summary", "status"],
+  "requires": { "binaries": [], "python": [], "env": [], "network": false, "job_dir": false },
+  "inputs": [],
+  "output_type": "json",
+  "output_ext": null,
+  "destructive": false,
+  "idempotent": true,
+  "confirm": "never",
+  "invoke": "node skill.mjs",
+  "check": null,
+  "timeout_ms": 5000,
+  "max_retries": 0,
+  "presentation": "text",
+  "imported_from": null
+}

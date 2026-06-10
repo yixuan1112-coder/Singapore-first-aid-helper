@@ -1,0 +1,56 @@
+{
+  "story": "proper-281",
+  "scenes": [
+    {
+      "scene": "god-deploy"
+    },
+    {
+      "scene": "resident-intro"
+    },
+    {
+      "scene": "responder-intro"
+    },
+    {
+      "scene": "ops-intro"
+    },
+    {
+      "scene": "resident-report"
+    },
+    {
+      "scene": "responder-duty"
+    },
+    {
+      "scene": "resident-sos"
+    },
+    {
+      "scene": "god-agents"
+    },
+    {
+      "scene": "propagation"
+    },
+    {
+      "scene": "responder-join"
+    },
+    {
+      "scene": "resident-relief"
+    },
+    {
+      "scene": "ops-verify"
+    },
+    {
+      "scene": "ops-deploy-bot"
+    },
+    {
+      "scene": "ops-broadcast"
+    },
+    {
+      "scene": "responder-offline"
+    },
+    {
+      "scene": "outcome"
+    },
+    {
+      "scene": "cleanup"
+    }
+  ]
+}

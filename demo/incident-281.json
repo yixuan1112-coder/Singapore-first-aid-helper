@@ -1,0 +1,327 @@
+{
+  "version": 2,
+  "id": "incident-281",
+  "title": "Smoke At Exit B",
+  "voices": {
+    "director": {
+      "label": "7_juilliard",
+      "language": "english",
+      "reference": "voice_actors/english/7_juilliard"
+    },
+    "resident": {
+      "label": "7_juilliard",
+      "language": "english",
+      "reference": "voice_actors/english/7_juilliard"
+    },
+    "responder": {
+      "label": "2_amateur",
+      "language": "english",
+      "reference": "voice_actors/english/2_amateur"
+    },
+    "ops": {
+      "label": "4_classically_trained",
+      "language": "english",
+      "reference": "voice_actors/english/4_classically_trained"
+    },
+    "pelita": {
+      "label": "7_juilliard",
+      "language": "english",
+      "reference": "voice_actors/english/7_juilliard"
+    }
+  },
+  "voice": {
+    "language": "english",
+    "seed": 281,
+    "reference": "voice_actors/english/7_juilliard"
+  },
+  "scenes": [
+    {
+      "id": "god-deploy",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "This is not a video. I am opening three real users on one live map, then driving reports, responders, alerts, and case state through M Q T T."
+    },
+    {
+      "id": "god-agents",
+      "voice": "director",
+      "speaker": "God Mode",
+      "narration": "Now I add disposable witness reports, rain pressure, and A I responder agents. They support the S O S; they are not the emergency trigger."
+    },
+    {
+      "id": "resident-intro",
+      "voice": "resident",
+      "speaker": "Citizen, Mei Ling",
+      "narration": "It is pouring at the M R T exit. An e bike is smoking at the covered choke point and people are crowding under shelter. I am asthmatic, so first I make sure my aid card is set."
+    },
+    {
+      "id": "responder-intro",
+      "voice": "responder",
+      "speaker": "Responder, Aisha",
+      "narration": "I am Aisha, a nearby community responder. I begin in lepak mode: no mission, no private details, and no false urgency until I choose to go on duty."
+    },
+    {
+      "id": "ops-intro",
+      "voice": "ops",
+      "speaker": "Ops, Nadia",
+      "narration": "I am Nadia in ops. I am not here to improvise heroics; I see reports, responders, cases, and map evidence, then decide what to publish and who to send."
+    },
+    {
+      "id": "resident-report",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Pelita is an A I Kaki agent, not another human role. Mei Ling asks one conditions question, and Pelita reads the same map snapshot already refreshed by the app."
+    },
+    {
+      "id": "responder-duty",
+      "voice": "responder",
+      "speaker": "Responder, Aisha",
+      "narration": "I am nearby, but the system should not page me just because I exist. I go on duty and declare medical plus hazard support."
+    },
+    {
+      "id": "resident-sos",
+      "voice": "resident",
+      "speaker": "Citizen, Mei Ling",
+      "narration": "Now it is an emergency. An elderly man near the smoke has collapsed and is not responding properly. I am the witness, he is the casualty, and this needs a Medical S O S."
+    },
+    {
+      "id": "bekal-intro",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Bekal is the S O S companion A I. It does not dispatch anyone. It calls the A E D and hospital skills, then gives Mei Ling specific guidance while responders move."
+    },
+    {
+      "id": "propagation",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "The same incident now exists in three maps. Mei Ling sees her S O S. Aisha receives a matched page. Nadia sees smoke reports and the live case forming."
+    },
+    {
+      "id": "ops-verify",
+      "voice": "ops",
+      "speaker": "Ops, Nadia",
+      "narration": "The S O S is already live. The reports are supporting context, so I verify with the map before I broadcast: access, cameras, rain, A E Ds, and emergency hospitals."
+    },
+    {
+      "id": "pondok-intro",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Pondok is the ops lookout A I. It reads the roster, cases, reports, and map context, suggests responder fit, and leaves the send decision to Nadia."
+    },
+    {
+      "id": "responder-join",
+      "voice": "responder",
+      "speaker": "Responder, Aisha",
+      "narration": "Before I join, I see the category and location but not private medical details. Once I commit, the case room opens and the aid card becomes useful."
+    },
+    {
+      "id": "resident-relief",
+      "voice": "resident",
+      "speaker": "Citizen, Mei Ling",
+      "narration": "This is the moment that matters. My map does not merely say help is coming. I can see responders moving toward me and an A E D runner assigned."
+    },
+    {
+      "id": "resilience-drop",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Now I break only Aisha's route to M Q T T. The app may keep working locally, but it must not pretend the broker has delivered her arrival."
+    },
+    {
+      "id": "responder-offline",
+      "voice": "responder",
+      "speaker": "Responder, Aisha",
+      "narration": "I mark myself on scene while the connection is down. My phone keeps the retained update queued instead of lying to Mei Ling."
+    },
+    {
+      "id": "resident-before-reconcile",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Mei Ling still has not received Aisha's arrival. That restraint is important: no false acknowledgement before M Q T T delivers it."
+    },
+    {
+      "id": "reconciled",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "The connection returns. M Q T T flushes the queued retained update, and Mei Ling's map reconciles to someone on scene."
+    },
+    {
+      "id": "ops-deploy-bot",
+      "voice": "ops",
+      "speaker": "Ops, Nadia",
+      "narration": "Now my job is coordination. Medical goes to the collapsed person, the A E D runner goes to the nearest device, and traffic access checks the road."
+    },
+    {
+      "id": "ops-broadcast",
+      "voice": "ops",
+      "speaker": "Ops, Nadia",
+      "narration": "The smoke and access risk are verified, so I warn people away from the station exit without exposing the private case room."
+    },
+    {
+      "id": "resident-safe",
+      "voice": "resident",
+      "speaker": "Citizen, Mei Ling",
+      "narration": "The alert tells everyone else what to avoid. In my case room I can see who is here; the A E D is with the elderly man, responders have him, and I am clear of the smoke. So I tap I'm safe."
+    },
+    {
+      "id": "responder-resolve",
+      "voice": "responder",
+      "speaker": "Responder, Aisha",
+      "narration": "The citizen's safe button is not enough by itself, and my field confirmation is not enough alone. The case closes only when both facts exist."
+    },
+    {
+      "id": "outcome",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Hospitals, A E Ds, traffic, cameras, weather, responders, chat, alerts, and state changes all served one story: map evidence plus M Q T T coordination."
+    },
+    {
+      "id": "cleanup",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "This performance is complete. I will remove the bots, users, reports, case messages, alerts, presence, and logs created by this session."
+    },
+    {
+      "id": "login-resident",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Mei Ling signs in as Citizen. The demo waits for each screen and enabled control before moving on."
+    },
+    {
+      "id": "login-responder",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Aisha signs in as Responder. The demo waits for each screen and enabled control before moving on."
+    },
+    {
+      "id": "login-ops",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Nadia signs in as Ops. The demo waits for each screen and enabled control before moving on."
+    },
+    {
+      "id": "profile-meiling-asthma",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Mei Ling marks asthma so smoke guidance can use her actual aid card."
+    },
+    {
+      "id": "profile-meiling-inhaler",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "She also records that she carries an inhaler. Only a responder who joins her S O S can see this."
+    },
+    {
+      "id": "profile-aisha-medical",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Aisha marks medical support so the app can match her to a Medical S O S."
+    },
+    {
+      "id": "profile-aisha-hazard",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "She also marks hazard support because smoke and blocked access affect this response."
+    },
+    {
+      "id": "pelita-result",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Pelita has turned the cached rain, air, and traffic readings into one useful local answer. No extra upstream fetch was needed."
+    },
+    {
+      "id": "focus-resident-sos",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "The map zooms into the actual S O S at Exit B. From this point onward, every hospital, A E D, traffic, camera, and weather check is measured from this incident."
+    },
+    {
+      "id": "bekal-result",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Bekal has returned the nearest A E D, an emergency hospital, and immediate safety guidance. Those skill results are also rendered as map pins."
+    },
+    {
+      "id": "focus-responder-sos",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Aisha opens the matched S O S area first. She checks resources and access around Exit B, not random markers elsewhere in Singapore."
+    },
+    {
+      "id": "map-aisha-aed",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Aisha opens the nearest A E D to the S O S, because she may need to run for the device while another responder starts C P R."
+    },
+    {
+      "id": "map-aisha-lta",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Aisha checks the nearest L T A traffic-incident record to Exit B. Its distance from the S O S is shown before she chooses her approach."
+    },
+    {
+      "id": "focus-resident-swarm",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Mei Ling returns to the S O S area. The close map now shows the casualty point and responder approach markers together."
+    },
+    {
+      "id": "focus-ops-sos",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Nadia zooms directly to Exit B. Every public-data popup that follows is the nearest available reading or facility to this S O S."
+    },
+    {
+      "id": "map-ops-lta",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Nadia opens the nearest L T A traffic-incident record to Exit B and checks its displayed distance from the S O S."
+    },
+    {
+      "id": "map-ops-camera",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Nadia opens the nearest traffic camera to Exit B. The image is relevant to the incident access route, not a random island-wide camera."
+    },
+    {
+      "id": "map-ops-rain",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Nadia checks the nearest rainfall station to the S O S because rain pushes people into the covered choke point and slows movement."
+    },
+    {
+      "id": "map-ops-aed",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Nadia opens the nearest A E D to Exit B to decide who should fetch it instead of duplicating medical support."
+    },
+    {
+      "id": "map-ops-hospital",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Nadia opens the nearest emergency hospital to the S O S, giving the case a concrete escalation point if the casualty worsens."
+    },
+    {
+      "id": "pondok-result",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Pondok has compared the live roster with the case: Aisha fits medical and hazard support, while Wei Jian fits the A E D run. Nadia still decides the deployment."
+    },
+    {
+      "id": "ops-investigation-action",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Nadia opens the blocked-access report and creates a separate investigation instead of confusing it with the medical casualty."
+    },
+    {
+      "id": "ops-broadcast-action",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "Nadia targets everyone near Exit B, marks the warning as Emergency, and writes one clear public action: keep the walkway and access road clear."
+    },
+    {
+      "id": "resident-alert-action",
+      "voice": "director",
+      "speaker": "AI Director",
+      "narration": "The ops warning has reached Mei Ling. The demo opens her alerts to show the delivered result before closing the case."
+    }
+  ]
+}

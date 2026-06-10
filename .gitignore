@@ -1,0 +1,20 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.provider-smoke-quota.json
+.env*
+!.env.example
+.vercel
+template
+CODEEXP_template/
+
+# Python backend (moved into this repo) — never commit the venv, caches, or secrets.
+backend/venv/
+backend/.venv/
+**/__pycache__/
+*.pyc
+# scratch (screenshots, probes)
+tmp/

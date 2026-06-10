@@ -1,0 +1,21 @@
+{
+  "id": "reports-summary",
+  "version": "1.0.0",
+  "tier": 1,
+  "primitive": true,
+  "description": "Summarise open civilian reports (kind, title, status) from the live picture, without dropping facts. Cache-only.",
+  "keywords": ["reports", "civilian", "issues", "open", "summary", "triage"],
+  "requires": { "binaries": [], "python": [], "env": [], "network": false, "job_dir": false },
+  "inputs": [],
+  "output_type": "json",
+  "output_ext": null,
+  "destructive": false,
+  "idempotent": true,
+  "confirm": "never",
+  "invoke": "node skill.mjs",
+  "check": null,
+  "timeout_ms": 5000,
+  "max_retries": 0,
+  "presentation": "text",
+  "imported_from": null
+}

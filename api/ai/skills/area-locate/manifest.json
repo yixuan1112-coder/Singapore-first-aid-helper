@@ -1,0 +1,24 @@
+{
+  "id": "area-locate",
+  "version": "1.0.0",
+  "tier": 1,
+  "primitive": true,
+  "description": "Resolve a GPS coordinate to the REAL Singapore planning area name (e.g. Jurong East, Bedok, Tampines) and region. Use this BEFORE naming any area — never guess an area name from raw coordinates yourself.",
+  "keywords": ["area", "location", "where", "neighbourhood", "planning area", "place", "region", "my area"],
+  "requires": { "binaries": [], "python": [], "env": [], "network": false, "job_dir": false },
+  "inputs": [
+    { "name": "lng", "type": "number", "description": "Longitude. Omit to use the caller's location from context.", "required": false },
+    { "name": "lat", "type": "number", "description": "Latitude. Omit to use the caller's location from context.", "required": false }
+  ],
+  "output_type": "json",
+  "output_ext": null,
+  "destructive": false,
+  "idempotent": true,
+  "confirm": "never",
+  "invoke": "node skill.mjs",
+  "check": null,
+  "timeout_ms": 4000,
+  "max_retries": 1,
+  "presentation": "text",
+  "imported_from": null
+}

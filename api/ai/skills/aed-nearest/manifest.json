@@ -1,0 +1,25 @@
+{
+  "id": "aed-nearest",
+  "version": "1.0.0",
+  "tier": 1,
+  "primitive": true,
+  "description": "Rank nearest public AEDs to a location from the bundled SG set (with opening hours); returns map marks. Cache-only.",
+  "keywords": ["aed", "defibrillator", "cardiac", "nearest", "rescue"],
+  "requires": { "binaries": [], "python": [], "env": [], "network": false, "job_dir": false },
+  "inputs": [
+    { "name": "lng", "type": "number", "description": "Longitude of the origin (SOS or user location).", "required": true },
+    { "name": "lat", "type": "number", "description": "Latitude of the origin.", "required": true },
+    { "name": "limit", "type": "number", "description": "How many AEDs to return (1-5).", "required": false, "default": 3 }
+  ],
+  "output_type": "json",
+  "output_ext": null,
+  "destructive": false,
+  "idempotent": true,
+  "confirm": "never",
+  "invoke": "node skill.mjs",
+  "check": null,
+  "timeout_ms": 5000,
+  "max_retries": 0,
+  "presentation": "text",
+  "imported_from": null
+}

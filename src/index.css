@@ -1,0 +1,267 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface-0: #F4F4F1;
+  --color-surface-1: #F4F4F1;
+  --color-surface-2: #EAE8E3;
+  --color-surface-3: #1A1A1A;
+  --color-surface-inset: #EAE8E3;
+  
+  --color-border-soft: #1A1A1A;
+  --color-border-strong: #1A1A1A;
+  
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: rgba(26, 26, 26, 0.6);
+  --color-text-muted: rgba(26, 26, 26, 0.4);
+  --color-text-inverse: #F4F4F1;
+
+  --color-accent-critical: #EF4444; 
+  --color-accent-warning: #FEF08A; 
+  --color-accent-info: #60A5FA; 
+  --color-accent-success: #4ADE80; 
+  --color-accent-neutral: #1A1A1A;
+  --color-focus-ring: #1A1A1A;
+
+  --color-scrim: rgba(26, 26, 26, 0.8);
+
+  --shadow-elev-1: 4px 4px 0px rgba(26,26,26,1);
+  --shadow-elev-2: 8px 8px 0px rgba(26,26,26,1);
+  --shadow-elev-3: 16px 16px 0px rgba(26,26,26,0.05);
+
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-full: 9999px;
+  
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-12: 48px;
+
+  --font-serif: "Times New Roman", Times, serif;
+}
+
+body {
+  @apply bg-surface-0 text-text-primary antialiased;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* Guardrails against translucent surfaces per guidelines */
+*, ::before, ::after {
+  backdrop-filter: none !important;
+}
+
+.qa-poi-marker strong {
+  font-size: 9px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.qa-poi-marker em {
+  font-size: 9px;
+  line-height: 1.15;
+  font-style: normal;
+  font-weight: 700;
+  opacity: 0.75;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.qa-poi-marker {
+  display: grid;
+  grid-template-columns: 30px minmax(70px, 150px);
+  grid-template-rows: auto auto;
+  column-gap: 6px;
+  align-items: center;
+  padding: 4px 6px 4px 4px;
+  border: 2px solid #1A1A1A;
+  background: #F4F4F1;
+  color: #1A1A1A;
+  box-shadow: 3px 3px 0 #1A1A1A;
+  cursor: pointer;
+  text-align: left;
+  opacity: var(--kk-poi-opacity, 1);
+  transition: opacity 0.15s;
+}
+
+.qa-poi-marker > span {
+  grid-row: 1 / span 2;
+  width: 30px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #1A1A1A;
+  background: #1A1A1A;
+  color: #F4F4F1;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.qa-poi-marker:hover {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+.event-pin {
+  opacity: var(--kk-poi-opacity, 1);
+  transition: opacity 0.15s;
+}
+
+.sos-pin {
+  opacity: var(--kk-poi-opacity, 1);
+  transition: opacity 0.15s;
+}
+
+.responder-pin {
+  opacity: var(--kk-poi-opacity, 1);
+  transition: opacity 0.15s;
+}
+
+.qa-poi-compact {
+  display: flex;
+  width: 22px;
+  height: 22px;
+  padding: 2px;
+  align-items: center;
+  justify-content: center;
+  border-width: 1px;
+  box-shadow: 2px 2px 0 #1A1A1A;
+}
+
+.qa-poi-compact > span {
+  width: 16px;
+  height: 16px;
+}
+
+.qa-poi-compact em,
+.qa-poi-compact strong {
+  display: none;
+}
+
+/* Hospital = red circle + white cross (universal A&E symbol). */
+.qa-poi-hospital > span {
+  background: #DC2626;
+  color: #FFFFFF;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  border-color: #FFFFFF;
+}
+
+/* AED = green circle (defib / rescue item). */
+.qa-poi-aed > span {
+  background: #16A34A;
+  color: #FFFFFF;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  border-color: #FFFFFF;
+}
+
+.qa-poi-warning > span {
+  background: #F59E0B;
+  color: #1A1A1A;
+}
+
+.qa-poi-critical > span {
+  background: #DC2626;
+  color: #F4F4F1;
+}
+
+.qa-poi-ok > span {
+  background: #22C55E;
+  color: #1A1A1A;
+}
+
+.qa-hover-popup {
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .qa-role-chip {
+    display: none;
+  }
+
+  .qa-brand-chip {
+    font-size: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+    max-width: 46vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width: 390px) {
+  .qa-brief-label {
+    display: none;
+  }
+
+  .qa-brief-btn {
+    min-width: 32px;
+    justify-content: center;
+  }
+}
+
+@keyframes kkpulse {
+  0% { transform: scale(1); opacity: 0.45; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+@keyframes kk-demo-title-backdrop {
+  0% { opacity: 0; }
+  10%, 82% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes kk-demo-title-card {
+  0% { opacity: 0; transform: translateY(22px) scale(0.96); filter: blur(5px); }
+  12% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+  82% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+  100% { opacity: 0; transform: translateY(-12px) scale(1.02); filter: blur(3px); }
+}
+
+@keyframes kkDemoFocusPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(241, 207, 84, 0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(241, 207, 84, 0); }
+}
+
+@keyframes kkDemoShake {
+  0% { transform: scale(1.04) translate3d(0, 0, 0); filter: saturate(0.9) contrast(1.1); }
+  12% { transform: scale(1.055) translate3d(-7px, 3px, 0); }
+  23% { transform: scale(1.052) translate3d(6px, -2px, 0); }
+  35% { transform: scale(1.06) translate3d(-4px, 5px, 0); }
+  48% { transform: scale(1.052) translate3d(5px, 2px, 0); }
+  64% { transform: scale(1.055) translate3d(-3px, -3px, 0); }
+  82% { transform: scale(1.045) translate3d(2px, 1px, 0); opacity: 1; }
+  100% { transform: scale(1.04) translate3d(0, 0, 0); opacity: 0; filter: saturate(0.8) contrast(1.05); }
+}
+
+.kk-demo-title-backdrop {
+  animation: kk-demo-title-backdrop 3400ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.kk-demo-title-card {
+  animation: kk-demo-title-card 3400ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  will-change: transform, opacity, filter;
+}
+
+.kk-demo-focus-pulse {
+  animation: kkDemoFocusPulse 2.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kk-demo-title-backdrop,
+  .kk-demo-title-card {
+    animation-name: kk-demo-title-backdrop;
+    transform: none;
+    filter: none;
+  }
+}

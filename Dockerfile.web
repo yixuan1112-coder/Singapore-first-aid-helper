@@ -1,0 +1,20 @@
+# The KampungKaki web app — the Vite dev server, which ALSO serves:
+#   • the React frontend (incl. the live demo: Director, personas, cutscenes, voice)
+#   • the api/ serverless functions (live gov-data proxies + the AI agents)
+# It proxies the realtime routes (/api/join, /api/demo/*, presence) to the bridge.
+#
+# We run `vite dev` (not a static build) on purpose: the api/ handlers run as dev
+# middleware here exactly as in production, so the demo + AI work with one process.
+FROM node:22-slim
+WORKDIR /app
+
+# Install deps first for layer caching.
+COPY package.json package-lock.json* ./
+RUN npm ci --no-audit --no-fund
+
+# App source — public/demo/* (personas, cutscenes, voice) and demo/* ship here.
+COPY . .
+
+EXPOSE 3000
+# 0.0.0.0 so the published port is reachable from the host browser.
+CMD ["npm", "run", "dev"]

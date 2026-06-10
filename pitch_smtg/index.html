@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kampung Kaki · CodeExp Group 49 · Pitch Deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500;700&family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ─────────────────────────────────────────────────────────────
+     KAMPUNG KAKI · PITCH DECK
+     15 slides · 1920×1080 landscape (Google Slides 16:9)
+     Style: brutalist hard-border + dark neon cinematic
+     ───────────────────────────────────────────────────────────── */
+
+  :root {
+    --bg-0:        #07070b;
+    --bg-1:        #0e0e15;
+    --surface:     #14141d;
+    --surface-2:   #1c1c28;
+    --border:      #2a2a3a;
+    --border-hot:  #ffffff;
+    --text:        #ffffff;
+    --muted:       #cdc6e2;
+    --muted-soft:  #9a93b8;
+    --critical:    #ff3b30;
+    --warning:     #ffb800;
+    --success:     #00d68f;
+    --info:        #5fd9ff;
+    --magenta:     #d96fff;
+    --pink:        #ff6fb8;
+    --amber:       #ffc06f;
+    --glow-crit:   0 0 28px rgba(255,59,48,0.45);
+    --glow-info:   0 0 28px rgba(95,217,255,0.35);
+    --shadow-hard: 6px 6px 0 rgba(0,0,0,0.85);
+    --shadow-hot:  4px 4px 0 var(--critical);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg-0);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.18;
+    mix-blend-mode: overlay;
+  }
+
+  /* ── DECK CONTAINER ── */
+  .deck {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding: 32px 0 80px;
+  }
+
+  /* ── SLIDE BASE · 1920 × 1080 ── */
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: var(--bg-1);
+    border: 2px solid var(--border-hot);
+    box-shadow: var(--shadow-hard);
+    position: relative;
+    overflow: hidden;       /* hard-clip — no content escapes the 1920×1080 frame */
+    padding: 48px 80px 72px; /* gives ~960px usable content height */
+    transform-origin: top center;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Auto-scale slides to viewport width so the deck reads on any monitor.
+     1920 is the source; everything inside is pixel-perfect at 1× scale.
+     We use scale() in BOTH axes and collapse the leftover height with a negative margin. */
+  @media (max-width: 1980px) {
+    .slide {
+      transform: scale(calc(100vw / 1980));
+      margin-bottom: calc((100vw / 1980 - 1) * 1080px);
+    }
+  }
+
+  /* ── COMMON CHROME ── */
+  .slide-number {
+    position: absolute;
+    bottom: 32px;
+    right: 48px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 6px;
+    color: var(--muted-soft);
+  }
+  .slide-brand {
+    position: absolute;
+    bottom: 32px;
+    left: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .slide-brand .dot { width: 10px; height: 10px; background: var(--critical); box-shadow: var(--glow-crit); }
+  .slide-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: var(--critical);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .slide-eyebrow::before {
+    content: '';
+    width: 48px; height: 2px;
+    background: var(--critical);
+    box-shadow: var(--glow-crit);
+  }
+  .slide-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 88px;
+    line-height: 0.92;
+    letter-spacing: 2px;
+    color: var(--text);
+    text-shadow: 0 4px 0 #000;
+    margin-bottom: 18px;
+  }
+  .slide-title.split { display: flex; flex-direction: column; }
+  .slide-title .accent { color: var(--critical); text-shadow: 0 0 32px rgba(255,59,48,0.55), 0 4px 0 #000; }
+  .slide-subtitle {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.3;
+    color: var(--muted);
+    max-width: 1500px;
+    margin-bottom: 8px;
+  }
+
+  /* ── PANELS & CARDS ── */
+  .panel {
+    background: var(--surface);
+    border: 2px solid var(--border-hot);
+    box-shadow: var(--shadow-hard);
+    padding: 22px 26px;
+    position: relative;
+  }
+  .panel.hot { box-shadow: var(--shadow-hot); border-color: var(--border-hot); }
+  .panel-label {
+    position: absolute;
+    top: -14px;
+    left: 24px;
+    background: var(--critical);
+    color: #000;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 4px;
+    padding: 4px 14px;
+    border: 2px solid #000;
+  }
+  .panel-label.amber { background: var(--warning); }
+  .panel-label.cyan  { background: var(--info); }
+  .panel-label.green { background: var(--success); }
+  .panel-label.dark  { background: #000; color: var(--text); border-color: var(--text); }
+
+  .panel-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .panel-body {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+  .panel-body strong { color: var(--text); font-weight: 500; }
+  .panel-body ul { list-style: none; padding: 0; margin: 8px 0 0; }
+  .panel-body li {
+    padding-left: 26px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .panel-body li::before {
+    content: '▸';
+    position: absolute;
+    left: 0; top: 0;
+    color: var(--critical);
+    font-weight: 700;
+  }
+  .panel-body li.gap::before { content: '×'; color: var(--warning); }
+  .panel-body li.win::before { content: '✓'; color: var(--success); }
+
+  /* ── REAL IMAGES ── */
+  .img-real {
+    border: 2px solid var(--border-hot);
+    box-shadow: var(--shadow-hard);
+    background: #000;
+    overflow: hidden;
+    position: relative;
+  }
+  .img-real img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center 18%;
+  }
+  .img-real.contain img { object-fit: contain; object-position: center center; }
+  /* Per-portrait fine-tuning: each face sits at a slightly different ratio */
+  .img-real.face-mei img    { object-position: center 22%; }
+  .img-real.face-daniel img { object-position: center 28%; }
+  .img-real.face-lim img    { object-position: center 30%; }
+  .img-real.face-tan img    { object-position: center 22%; }
+
+  /* ── IMAGE PLACEHOLDERS ── */
+  .img-slot {
+    background:
+      repeating-linear-gradient(45deg, transparent 0 8px, rgba(255,255,255,0.03) 8px 16px),
+      var(--surface-2);
+    border: 2px dashed var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted-soft);
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 24px;
+    position: relative;
+  }
+  .img-slot::before {
+    content: '⬜ IMAGE';
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 6px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .img-slot .note {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.4;
+    max-width: 92%;
+  }
+
+  /* ── GRID HELPERS ── */
+  .row { display: flex; gap: 28px; }
+  .col { display: flex; flex-direction: column; gap: 28px; flex: 1; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; }
+
+  /* ── BACKGROUND ACCENTS ── */
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,59,48,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(95,217,255,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+  .aurora {
+    position: absolute;
+    inset: -10%;
+    background:
+      radial-gradient(closest-side at 18% 30%, rgba(255,59,48,0.18), transparent 60%),
+      radial-gradient(closest-side at 82% 22%, rgba(95,217,255,0.16), transparent 65%),
+      radial-gradient(closest-side at 64% 84%, rgba(217,111,255,0.16), transparent 60%);
+    filter: blur(90px);
+    pointer-events: none;
+  }
+
+  /* ── BADGES / CHIPS ── */
+  .chip {
+    display: inline-block;
+    padding: 6px 14px;
+    border: 2px solid var(--border-hot);
+    background: var(--surface);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-right: 8px;
+    box-shadow: 3px 3px 0 #000;
+  }
+  .chip.crit { background: var(--critical); color: #000; }
+  .chip.amber { background: var(--warning); color: #000; }
+  .chip.cyan { background: var(--info); color: #000; }
+  .chip.green { background: var(--success); color: #000; }
+
+  /* ── PILLARS / KPI ── */
+  .pillar-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    color: var(--critical);
+    line-height: 1;
+  }
+  .pillar-num.cyan { color: var(--info); }
+  .pillar-num.amber { color: var(--warning); }
+  .kpi-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--text);
+  }
+  .kpi-big.crit { color: var(--critical); text-shadow: var(--glow-crit); }
+  .kpi-big.cyan { color: var(--info); text-shadow: var(--glow-info); }
+  .kpi-label {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  /* ── ARROWS / FLOW ── */
+  .arrow {
+    color: var(--critical);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+  }
+
+  /* ── COVER / CLOSING ── */
+  .cover {
+    background:
+      radial-gradient(ellipse at top, rgba(255,59,48,0.25), transparent 60%),
+      radial-gradient(ellipse at bottom, rgba(95,217,255,0.18), transparent 65%),
+      var(--bg-1);
+  }
+  .cover .slide-title { font-size: 180px; }
+  .mega {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 200px;
+    line-height: 0.88;
+    letter-spacing: 4px;
+  }
+
+  /* ── TABLE-LIKE GAP MATRIX ── */
+  .gap-matrix { width: 100%; border-collapse: collapse; font-size: 16px; }
+  .gap-matrix th, .gap-matrix td {
+    border: 2px solid var(--border-hot);
+    padding: 14px 16px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .gap-matrix th {
+    background: #000;
+    color: var(--critical);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 3px;
+  }
+  .gap-matrix td.no { color: var(--critical); font-weight: 700; }
+  .gap-matrix td.yes { color: var(--success); font-weight: 700; }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: #fff; }
+    .deck { gap: 0; padding: 0; }
+    .slide { page-break-after: always; transform: none !important; margin: 0 !important; box-shadow: none; }
+  }
+
+  /* ── NAV DOTS ── */
+  .nav-dots {
+    position: fixed;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+  }
+  .nav-dots a {
+    width: 12px; height: 12px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    display: block;
+    transition: background 0.2s;
+  }
+  .nav-dots a:hover { background: var(--critical); }
+
+</style>
+</head>
+<body>
+
+<nav class="nav-dots">
+  <a href="#s1" title="01 · Cover"></a>
+  <a href="#s2" title="02 · Existing Solutions"></a>
+  <a href="#s3" title="03 · User Stories"></a>
+  <a href="#s4" title="04 · Our Solution"></a>
+  <a href="#s5" title="05 · Pillar 1: MQTT"></a>
+  <a href="#s6" title="06 · Pillar 2: AI Host"></a>
+  <a href="#s7" title="07 · Pillar 3: Role Triad"></a>
+  <a href="#s8" title="08 · Live Data Sources"></a>
+  <a href="#s9" title="09 · Citizen Flow"></a>
+  <a href="#s10" title="10 · Responder Flow"></a>
+  <a href="#s11" title="11 · Ops Flow"></a>
+  <a href="#s12" title="12 · Tech Stack"></a>
+  <a href="#s13" title="13 · Architecture"></a>
+  <a href="#s14" title="14 · Demo Video"></a>
+  <a href="#s15" title="15 · Save Up"></a>
+</nav>
+
+<main class="deck">
+
+<!-- ════════════════════════════════════════════════════════════
+     SLIDE 01 · COVER
+     Logo + QR demo + identity
+     ════════════════════════════════════════════════════════════ -->
+<section id="s1" class="slide cover">
+  <div class="aurora"></div>
+  <div class="grid-bg"></div>
+
+  <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; position: relative; z-index: 2;">
+
+    <header style="display: flex; justify-content: space-between; align-items: flex-start;">
+      <div>
+        <div class="slide-eyebrow">CODEEXP 2026 · GROUP 49 · OPEN CATEGORY · PROBLEM STATEMENT 3</div>
+        <div style="font-family: 'DM Mono', monospace; font-size: 14px; letter-spacing: 4px; color: var(--muted);">
+          A SINGAPORE-FIRST · CIVIC EMERGENCY COORDINATION STACK
+        </div>
+      </div>
+      <div class="chip crit">LIVE · PROD</div>
+    </header>
+
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: center;">
+
+      <div>
+        <div class="img-real" style="width: 260px; height: 260px; margin-bottom: 32px; border-radius: 50%; border: 6px solid #fff; box-shadow: 0 0 0 2px #000, 0 0 48px rgba(255,255,255,0.18), 6px 6px 0 rgba(255,59,48,0.5);">
+          <img src="kampung_kaki_icon.png" alt="Kampung Kaki logo" style="object-fit: cover; object-position: center center;">
+        </div>
+        <h1 class="mega">KAMPUNG<br><span style="color: var(--critical); text-shadow: 0 0 48px rgba(255,59,48,0.6), 0 6px 0 #000;">KAKI</span></h1>
+        <p style="font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; font-size: 42px; color: var(--muted); margin-top: 28px; max-width: 880px; line-height: 1.25;">
+          When the towers fall and the apps go dark, the kampung stays on its feet.
+        </p>
+        <div style="margin-top: 36px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <span class="chip">OFFLINE-FIRST</span>
+          <span class="chip cyan">AI-NATIVE</span>
+          <span class="chip amber">MQTT MESH</span>
+          <span class="chip green">SG-DATA-LIVE</span>
+        </div>
+      </div>
+
+      <div class="panel hot" style="padding: 36px;">
+        <div class="panel-label">SCAN · TRY IT</div>
+        <div class="img-slot" style="aspect-ratio: 1; width: 100%; margin-bottom: 20px;">
+          <div class="note">QR code → https://quick-aid-sg.vercel.app<br>(generate at qr-code-generator.com, 600×600, high contrast)</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 4px; color: var(--critical);">quick-aid-sg.vercel.app</div>
+          <div style="font-size: 13px; letter-spacing: 3px; color: var(--muted); margin-top: 8px; text-transform: uppercase;">Web · Mobile-first · No install needed</div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer style="display: flex; justify-content: space-between; align-items: flex-end;">
+      <div>
+        <div style="font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 4px; color: var(--text);">CODEEXP 2026 · GROUP 49</div>
+        <div style="font-size: 12px; letter-spacing: 3px; color: var(--muted); margin-top: 6px; text-transform: uppercase;">Open Category · Problem Statement 3</div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 3px; color: var(--muted);">21 MAY 2026</div>
+        <div style="font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 5px; color: var(--critical); margin-top: 4px;">PS3 · OPEN</div>
+      </div>
+    </footer>
+
+  </div>
+
+  <div class="slide-number">01 / 15</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SLIDE 02 · EXISTING SOLUTIONS & THEIR GAPS
+     myResponder · SGSecure · SG Alert
+     ════════════════════════════════════════════════════════════ -->
+<section id="s2" class="slide">
+  <div class="slide-eyebrow">THE BASELINE</div>
+  <h2 class="slide-title">Singapore already <span class="accent">tried.</span></h2>
+  <p class="slide-subtitle">
+    Three official apps cover the normal case. None of them survives the abnormal one.
+  </p>
+
+  <div class="grid-3" style="margin-top: 48px;">
+
+    <div class="panel">
+      <div class="panel-label">01 · SCDF + HTX</div>
+      <div class="panel-title">myResponder</div>
+      <div class="panel-body">
+        <strong>Does:</strong> alerts 250K+ registered CFRs to cardiac arrest and minor fires within 800m–1.5km. In-app chat, photo/video to SCDF Ops, one-tap 995 with geolocation.
+        <ul style="margin-top: 14px;">
+          <li class="gap">100% dependent on mobile data — no offline fallback</li>
+          <li class="gap">Only cardiac + minor fires — no disaster coordination</li>
+          <li class="gap">Chat dies the moment towers degrade</li>
+          <li class="gap">No mesh, no store-and-forward</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-label amber">02 · MHA + HTX</div>
+      <div class="panel-title">SGSecure</div>
+      <div class="panel-body">
+        <strong>Does:</strong> public reports suspicious activity (photo/video), receives emergency broadcasts, SMS-70999 Personal SOS, locates Civil Defence shelters.
+        <ul style="margin-top: 14px;">
+          <li class="gap">Reporting needs internet — fails under network congestion</li>
+          <li class="gap">Passive one-way reporting, not two-way coordination</li>
+          <li class="gap">No confirmed offline mode, no MQTT, no mesh</li>
+          <li class="gap">Built for terrorism, not multi-hazard disaster ops</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-label cyan">03 · SCDF · APR 2026</div>
+      <div class="panel-title">SG Alert</div>
+      <div class="panel-body">
+        <strong>Does:</strong> cell-broadcast (CBS) alerts ride the radio network not mobile data, bypass DND, islandwide or geo-targeted, no app required.
+        <ul style="margin-top: 14px;">
+          <li class="gap">Singtel-only during phased rollout · others get SMS</li>
+          <li class="gap">Older phones show wrong labels ("Presidential alert")</li>
+          <li class="gap">One-way broadcast — zero public feedback</li>
+          <li class="gap">Fails the moment cell towers are physically down</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="panel hot" style="margin-top: 36px; padding: 28px 36px;">
+    <div class="panel-label">THE COMMON GAP</div>
+    <div style="display: flex; align-items: center; gap: 32px;">
+      <div class="kpi-big crit" style="font-size: 100px;">0 / 3</div>
+      <div style="font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; line-height: 1.35; color: var(--text); flex: 1;">
+        Zero of the three existing solutions handle infrastructure failure. The disaster scenario they were built to address is the exact one where they go dark.
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-brand"><span class="dot"></span> KAMPUNG KAKI · CODEEXP G49</div>
+  <div class="slide-number">02 / 15</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SLIDE 03 · USER STORIES
+     Citizen · CFR · Ops · Vulnerable resident
+     ════════════════════════════════════════════════════════════ -->
+<section id="s3" class="slide">
+  <div class="slide-eyebrow">WHO BREAKS WHEN THE NETWORK DOES</div>
+  <h2 class="slide-title">Four people, <span class="accent">one bad day.</span></h2>
+  <p class="slide-subtitle">The user stories we built every feature against. Each one fails today's stack.</p>
+
+  <div class="grid-4" style="margin-top: 56px;">
+
+    <div class="panel">
+      <div class="panel-label">PERSONA A</div>
+      <div class="img-real face-mei" style="height: 280px; margin-bottom: 16px;">
+        <img src="auntie_mei.png" alt="Auntie Mei">
+      </div>
+      <div class="panel-title" style="font-size: 28px;">Auntie Mei · 68</div>
+      <div style="font-size: 12px; letter-spacing: 3px; color: var(--info); text-transform: uppercase; margin-bottom: 12px;">CITIZEN · BOON LAY</div>
+      <div class="panel-body" style="font-size: 15px;">
+        "Lift smoke alarm bunyi. My phone keeps loading. I want one button, tell rescue where I am, and tell my neighbour upstairs to also turn off the gas."
+        <ul style="margin-top: 12px;">
+          <li>Needs <strong>one-tap SOS</strong> with live location</li>
+          <li>Needs guidance in plain English under panic</li>
+          <li>Cannot tolerate "loading…"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-label amber">PERSONA B</div>
+      <div class="img-real face-daniel" style="height: 280px; margin-bottom: 16px;">
+        <img src="daniel.png" alt="Daniel the cyclist">
+      </div>
+      <div class="panel-title" style="font-size: 28px;">Daniel · 34</div>
+      <div style="font-size: 12px; letter-spacing: 3px; color: var(--warning); text-transform: uppercase; margin-bottom: 12px;">CFR · CYCLIST · CBD</div>
+      <div class="panel-body" style="font-size: 15px;">
+        "I trained CPR + AED. Show me the SOS within 800m, route me, tell me which AED is nearest, let me chat with the other responder already on scene."
+        <ul style="margin-top: 12px;">
+          <li>Needs <strong>mission board</strong> with fit-score</li>
+          <li>Needs a case room with peers + ops</li>
+          <li>Needs Host AI to answer questions fast</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-label cyan">PERSONA C</div>
+      <div class="img-real face-lim" style="height: 280px; margin-bottom: 16px;">
+        <img src="capt_lim.png" alt="Captain Lim at SCDF Ops Centre">
+      </div>
+      <div class="panel-title" style="font-size: 28px;">Cpt Lim · Ops</div>
+      <div style="font-size: 12px; letter-spacing: 3px; color: var(--info); text-transform: uppercase; margin-bottom: 12px;">DISPATCHER · OPS CENTRE</div>
+      <div class="panel-body" style="font-size: 15px;">
+        "I have 14 reports in 6 minutes. I need to see which are corroborated, declare an incident, dispatch the nearest responder, and broadcast to a zone — all without leaving the map."
+        <ul style="margin-top: 12px;">
+          <li>Needs <strong>unified ops console</strong></li>
+          <li>Needs corroboration scoring</li>
+          <li>Needs zone-targeted broadcasts</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-label green">PERSONA D</div>
+      <div class="img-real face-tan" style="height: 280px; margin-bottom: 16px;">
+        <img src="mr_tan.png" alt="Mr Tan, elderly resident">
+      </div>
+      <div class="panel-title" style="font-size: 28px;">Mr Tan · 71</div>
+      <div style="font-size: 12px; letter-spacing: 3px; color: var(--success); text-transform: uppercase; margin-bottom: 12px;">VULNERABLE · WHEELCHAIR</div>
+      <div class="panel-body" style="font-size: 15px;">
+        "I cannot evacuate on my own. When the building alarms go off, I want my registered volunteer kakis to know I'm in unit 12-345 — even if my phone never sent the message."
+        <ul style="margin-top: 12px;">
+          <li>Needs <strong>store-and-forward</strong> SOS</li>
+          <li>Needs MQTT QoS-1 delivery on reconnect</li>
+          <li>Needs registered kaki groups</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="slide-brand"><span class="dot"></span> KAMPUNG KAKI · CODEEXP G49</div>
+  <div class="slide-number">03 / 15</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SLIDE 04 · OUR SOLUTION · KAMPUNG KAKI
+     Unique features in one frame
+     ════════════════════════════════════════════════════════════ -->
+<section id="s4" class="slide">
+  <div class="aurora" style="opacity: 0.6;"></div>
+
+  <div style="position: relative; z-index: 2;">
+    <div class="slide-eyebrow">WHAT WE BUILT</div>
+    <h2 class="slide-title split">
+      <span>One stack.</span>
+      <span class="accent">Three roles. Zero downtime.</span>
+    </h2>
+    <p class="slide-subtitle">Kampung Kaki is the missing layer between citizen, community responder, and ops — engineered for the day the network buckles.</p>
+
+    <div class="grid-3" style="margin-top: 56px;">
+
+      <div class="panel hot">
+        <div class="panel-label">UNIQUE · 01</div>
+        <div class="pillar-num">①</div>
+        <div class="panel-title" style="margin-top: 8px;">MQTT-First Survival Layer</div>
+        <div class="panel-body">
+          QoS-1 publish, retained last-known-state, store-and-forward on reconnect. The exact protocol cell-broadcast and HTTP apps refuse to use. Survives congestion, partial outages, and degraded backhaul.
+          <div style="margin-top: 14px;"><span class="chip crit">FAILURE-AWARE</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-label cyan">UNIQUE · 02</div>
+        <div class="pillar-num cyan">②</div>
+        <div class="panel-title" style="margin-top: 8px;">AI Host · Speed of Response</div>
+        <div class="panel-body">
+          In an emergency, time is the constraint. Manual lookups for hospital wait, AED location, road closures, PSI cost <strong>~5 minutes per case</strong>. The AI Host collapses that to <strong>under 10 seconds</strong> via 13 grounded slash commands.
+          <div style="margin-top: 14px;"><span class="chip cyan">5 MIN → 10 S</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-label amber">UNIQUE · 03</div>
+        <div class="pillar-num amber">③</div>
+        <div class="panel-title" style="margin-top: 8px;">Role-Aware Triad UI</div>
+        <div class="panel-body">
+          One map, three workspaces. Citizen sees alerts + SOS. Responder sees the mission board + case rooms. Ops sees reports, dispatch, zones, broadcasts. Sub-second role switch on the same shared map state.
+          <div style="margin-top: 14px;"><span class="chip amber">CITIZEN · CFR · OPS</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="panel" style="margin-top: 36px;">
+      <div class="panel-label dark">THE PROMISE</div>
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; align-items: center;">
+        <div>
+          <div class="kpi-big crit">800m</div>
+          <div class="kpi-label">CFR cyclist alert radius</div>
+        </div>
+        <div>
+          <div class="kpi-big cyan">13</div>
+          <div class="kpi-label">Live AI slash commands</div>
+        </div>
+        <div>
+          <div class="kpi-big" style="color: var(--warning);">30+</div>
+          <div class="kpi-label">Singapore data sources wired</div>
+        </div>
+        <div>
+          <div class="kpi-big" style="color: var(--success);">3</div>
+          <div class="kpi-label">Role workspaces, 1 map</div>
+        </div>
+        <div>
+          <div class="kpi-big" style="color: var(--magenta);">&lt;10s</div>
+          <div class="kpi-label">Info lookup vs. 5 min manual</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-brand"><span class="dot"></span> KAMPUNG KAKI · CODEEXP G49</div>
+  <div class="slide-number">04 / 15</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SLIDE 05 · PILLAR 1 · MQTT MESH + STORE-AND-FORWARD
+     ════════════════════════════════════════════════════════════ -->
+<section id="s5" class="slide">
+  <div class="slide-eyebrow">PILLAR 01 · WHEN THE NETWORK BREAKS</div>
+  <h2 class="slide-title">MQTT, <span class="accent">not HTTP.</span></h2>
+  <p class="slide-subtitle">The single protocol decision that separates Kampung Kaki from every existing solution.</p>
+
+  <div class="row" style="margin-top: 48px; align-items: stretch;">
+
+    <div class="col" style="flex: 1.2;">
+
+      <div class="panel">
+        <div class="panel-label">WHY MQTT</div>
+        <div class="panel-body" style="font-size: 18px;">
+          MQTT is designed for high-latency, low-bandwidth, intermittent links. HTTP is designed for a healthy data centre on a good day. In a disaster, the network is the patient.
+          <ul style="margin-top: 16px;">
+            <li class="win"><strong>QoS-1 + retained messages</strong> — the broker re-sends your SOS until the responder ACKs it</li>
+            <li class="win"><strong>Store-and-forward</strong> — message queued locally, delivered the moment a link returns</li>
+            <li class="win"><strong>Topic-tree dispatch</strong> — <code style="color: var(--info);">cases/{zone}/{caseId}</code> scales to thousands of subscribers</li>
+            <li class="win"><strong>Tiny wire format</strong> — 2-byte header, fits over LoRa-class backhaul if cell dies</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel hot">
+        <div class="panel-label">CONTRAST · WHAT THE INCUMBENTS LACK</div>
+        <table class="gap-matrix">
+          <thead><tr><th>Capability</th><th>myResponder</th><th>SGSecure</th><th>SG Alert</th><th>Kampung Kaki</th></tr></thead>
+          <tbody>
+            <tr><td>Offline / degraded network</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="yes">yes</td></tr>
+            <tr><td>Two-way low-bandwidth signal</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="yes">yes</td></tr>
+            <tr><td>Mesh / peer relay tolerance</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="yes">yes</td></tr>
+            <tr><td>CFR telemetry under failure</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="yes">yes</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="col" style="flex: 1;">
+
+      <div class="img-slot" style="flex: 1; min-height: 480px;">
+        <div class="note">
+          Diagram · MQTT topology<br>
+          [Citizen client] ─ pub <code>sos/Boon-Lay/SOS-001</code> → [Mosquito broker · QoS 1]<br>
+          ─ retain last-known → [Responder subs <code>sos/Boon-Lay/+</code>]<br>
+          ─ fan-out → [Ops Centre subs <code>sos/+/+</code>]<br>
+          Side note: store-and-forward when phone goes offline, replay on reconnect<br>
+          (Use a clean mermaid/excalidraw export, dark background, red+cyan strokes)
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-label dark">RECEIPT TRAIL</div>
+        <div class="panel-body" style="font-family: 'DM Mono', monospace; font-size: 14px;">
+          <div>► <span style="color: var(--info);">PUB</span> sos/boon-lay/SOS-281 qos=1 retain=true</div>
+          <div>► <span style="color: var(--warning);">PUBACK</span> 12 ms</div>
+          <div>► <span style="color: var(--success);">SUBACK</span> R-ECHO-1 — within 800 m radius</div>
+          <div>► <span style="color: var(--success);">RECV</span> case_room/SOS-281 — captain claimed</div>
+          <div>► <span style="color: var(--muted);">[ phone offline 42 s ]</span></div>
+          <div>► <span style="color: var(--success);">REDELIVER</span> 3 backlogged frames on reconnect</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="slide-brand"><span class="dot"></span> KAMPUNG KAKI · CODEEXP G49</div>
+  <div class="slide-number">05 / 15</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SLIDE 06 · PILLAR 2 · AI HOST · SPEED OF RESPONSE
+     ════════════════════════════════════════════════════════════ -->
+<section id="s6" class="slide">
+  <div class="slide-eyebrow">PILLAR 02 · IN AN EMERGENCY, SECONDS ARE THE BUDGET</div>
+  <h2 class="slide-title">Time saved is <span class="accent">lives saved.</span></h2>
+  <p class="slide-subtitle">The data already exists — hospital queues, road closures, AED locations, PSI. The bottleneck is the human who has to find it under panic. Our AI Host collapses that search into one line.</p>
+
+  <div class="row" style="margin-top: 36px; align-items: stretch;">
+
+    <div class="panel hot" style="flex: 1.25;">
+      <div class="panel-label">THE COST OF MANUAL LOOKUP</div>
+      <div style="display: grid; grid-template-columns: 1.4fr 0.6fr 1fr; gap: 14px 22px; margin-top: 10px; font-size: 14px; align-items: center;">
+        <div style="font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 3px; color: var(--muted);">QUESTION</div>
+        <div style="font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 3px; color: var(--muted);">MANUAL</div>
+        <div style="font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 3px; color: var(--info);">/host CALL</div>
+
+        <div><strong>Which A&amp;E has shortest wait?</strong></div>
+        <div style="color: var(--critical); font-weight: 700;">~90 s</div>
+        <div><code style="color: var(--info);">/host hospital load</code> · <strong style="color: var(--success);">&lt; 2 s</strong></div>
+
+        <div><strong>Nearest AED to my position?</strong></div>
+        <div style="color: var(--critical); font-weight: 700;">~60 s</div>
+        <div><code style="color: var(--info);">/host nearest aed</code> · <strong style="color: var(--success);">&lt; 2 s</strong></div>
+
+        <div><strong>Road open between us and scene?</strong></div>
+        <div style="color: var(--critical); font-weight: 700;">~120 s</div>
+        <div><code style="color: var(--info);">/host route &lt;m&gt; to &lt;p&gt;</code> · <strong style="color: var(--success);">&lt; 2 s</strong></div>
+
+        <div><strong>Is the air safe to enter?</strong></div>
+        <div style="color: var(--critical); font-weight: 700;">~45 s</div>
+        <div><code style="color: var(--info);">/host weather</code> · <strong style="color: var(--success);">&lt; 2 s</strong></div>
+
+        <div><strong>Should we escalate?</strong></div>
+        <div style="color: var(--critical); font-weight: 700;">~30 s</div>
+        <div><code style="color: var(--info);">/host escalate?</code> · <strong style="color: var(--success);">&lt; 2 s</strong></div>
+      </div>
+      <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); display: flex; gap: 32px; align-items: center;">
+        <div>
+          <div class="kpi-big crit" style="font-size: 64px;">~5 min</div>
+          <div class="kpi-label">Manual search per case</div>
+        </div>
+        <div style="font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: var(--text);">→</div>
+        <div>
+          <div class="kpi-big" style="color: var(--success); font-size: 64px; text-shadow: 0 0 28px rgba(0,214,143,0.45);">&lt; 10 s</div>
+          <div class="kpi-label">With AI Host</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col" style="flex: 1;">
+
+      <div class="panel">
+        <div class="panel-label cyan">CITIZEN ASKS THE AI · ONE EXAMPLE</div>
+
+        <div style="background: #fff; color: #000; border: 2px solid #000; padding: 10px 14px; margin-top: 6px; font-size: 14px; line-height: 1.5; box-shadow: 4px 4px 0 var(--critical);">
+          <div style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; color: #666; text-transform: uppercase; margin-bottom: 4px;">CITIZEN @ BLK 521 BOON LAY</div>
+          <div style="color: #000; font-weight: 600;">"Smoke in the stairwell. Am I safe to leave?"</div>
+        </div>
+
+        <div style="margin-top: 12px; font-size: 14px; line-height: 1.55; color: var(--text);">
+          <div style="margin-bottom: 8px; display: flex; gap: 10px; align-items: flex-start;">
+            <span style="background: var(--info); color: #000; font-family: 'Bebas Neue', sans-serif; font-size: 12px; letter-spacing: 2px; padding: 2px 8px; border: 2px solid #000; flex-shrink: 0; min-width: 88px; text-align: center;">SITUATION</span>
+            <span>verified fire report 60m east, PSI normal, wind W→E.</span>
+          </div>
+          <div style="margin-bottom: 8px; display: flex; gap: 10px; align-items: flex-start;">
+            <span style="background: var(--warning); color: #000; font-family: 'Bebas Neue', sans-serif; font-size: 12px; letter-spacing: 2px; padding: 2px 8px; border: 2px solid #000; flex-shrink: 0; min-width: 88px; text-align: center;">DO NOW</span>
+            <span>stay in unit, close doors, wet towel under door, call 995.</span>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: flex-start;">
+            <span style="background: var(--critical); color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 12px; letter-spacing: 2px; padding: 2px 8px; border: 2px solid #000; flex-shrink: 0; min-width: 88px; text-align: center;">IF WORSE</span>
+            <span>smoke into unit → balcony, signal, tap SOS Trapped.</span>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 4px; flex-wrap: wrap; margin-top: 12px;">
+          <span class="chip cyan" style="font-size: 9px; padding: 3px 8px;">tool: nea_psi</span>
+          <span class="chip" style="font-size: 9px; padding: 3px 8px;">tool: revgeocode</span>
+          <span class="chip amber" style="font-size: 9px; padding: 3px 8px;">tool: gpt-5.5</span>
+        </div>
+        <div style="margin-top: 10px; font-style: italic; font-family: 'Fraunces', serif; font-size: 12px; color: var(--text); opacity: 0.85;">Three labelled sections, ≤ 3 bullets each. The citizen never reads a wall of text mid-emergency.</div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-label amber">RESPONDER · 13 SLASH COMMANDS</div>
+        <div class="img-real" style="height: 130px; margin-top: 4px; background: var(--bg-2); border-color: var(--border);">
+          <div class="img-slot" style="height: 100%; border: none;">
+            <div class="note" style="font-size: 11px; max-width: 92%;">Screenshot · case-room SlashComposer dropdown (crop from feature-shots/17-responder-case-room.png)</div>
+          </div>
+        </div>
+        <div class="panel-body" style="font-size: 12px; margin-top: 8px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px 14px; line-height: 1.35;">
+            <div><strong style="color: var(--info);">/host status</strong></div><div><strong style="color: var(--info);">/host route</strong></div>
+            <div><strong style="color: var(--info);">/host nearest aed</strong></div><div><strong style="color: var(--info);">/host hospital load</strong></div>
+            <div><strong style="color: var(--info);">/host weather</strong></div><div><strong style="color: var(--info);">/host escalate?</strong></div>
+            <div><strong style="color: var(--info);">/host playback 5m</strong></div><div><strong style="color: var(--info);">/host draft aar</strong></div>
+            <div style="grid-column: 1 / -1; color: var(--muted-soft); font-size: 10px; font-style: italic; margin-top: 2px;">+ /host check, suggest formation, new pings?, pause watchdog, help</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top: 22px; padding: 18px 28px;">
+    <div class="panel-label dark">THE GUARDRAIL · NEVER INVENT</div>
+    <div style="display: flex; align-items: center; gap: 28px;">
+      <div style="font-family: 'Fraunces', serif; font-style: italic; font-size: 20px; line-height: 1.35; color: var(--text); flex: 1;">
+        Speed without truth is a hazard. Every reply chips out the tools it called — <span class="chip cyan" style="font-size: 11px;">tool: onemap_aed</span> <span class="chip" style="font-size: 11px;">tool: nea_psi</span> <span class="chip amber" style="font-size: 11px;">tool: gpt-5.5</span> — and missing fields render as <strong style="color: var(--critical);">unavailable</strong>, never fabricated. Powered by <strong style="color: var(--text);">OpenAI GPT-5.5</strong>, temperature 0.2.
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-brand"><span class="dot"></span> KAMPUNG KAKI · CODEEXP G49</div>
+  <div class="slide-number">06 / 15</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SLIDE 07 · PILLAR 3 · ROLE-AWARE TRIAD UI
+     ════════════════════════════════════════════════════════════ -->
+<section id="s7" class="slide">
+  <div class="slide-eyebrow">PILLAR 03 · ONE INCIDENT, ONE OBJECT, ZERO HANDOFF</div>
+  <h2 class="slide-title">Three roles, <span class="accent">one source of truth.</span></h2>
+  <p class="slide-subtitle">Today's stack splits a single emergency across three apps and three databases. Every handoff is manual, every reconciliation is lossy. We collapse that into one shared object — citizen, responder, and ops all reading and writing the same record.</p>
+
+  <div class="grid-3" style="margin-top: 32px;">
+
+    <div class="panel">
+      <div class="panel-label">CITIZEN</div>
+      <div class="panel-title">Raises the signal</div>
+      <div class="img-slot" style="height: 320px; margin: 12px 0;">
+        <div class="note">Screenshot · feature-shots/00-shell-citizen-map.png — citizen map with SOS button, AI advisor, nearby alerts</div>
+      </div>
+      <div class="panel-body" style="font-size: 14px;">
+        Files <strong style="color: var(--text);">REPORT-281</strong> with category, GPS, evidence, severity. Same record, instantly visible to verifying ops and responders within range.
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-label amber">RESPONDER</div>
+      <div class="panel-title">Acts on the signal</div>
+      <div class="img-slot" style="height: 320px; margin: 12px 0;">
+        <div class="note">Screenshot · feature-shots/11-responder-joinable-missions.png — Mission Board, fit-scored joinable cases</div>
+      </div>
+      <div class="panel-body" style="font-size: 14px;">
+        Reads <strong style="color: var(--text);">REPORT-281</strong> → joins <strong style="color: var(--text);">CASE-281</strong>. Status, position, beats, AAR — all written back to the same record ops already has open.
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-label cyan">OPS</div>
+      <div class="panel-title">Verifies, dispatches, broadcasts</div>
+      <div class="img-slot" style="height: 320px; margin: 12px 0;">
+        <div class="note">Screenshot · feature-shots/19-ops-report-queue.png — Report queue, dispatch dock, zone tools</div>
+      </div>
+      <div class="panel-body" style="font-size: 14px;">
+        Sees corroboration count, declares <strong style="color: var(--text);">EVENT-281</strong>, dispatches, draws a zone, broadcasts back to citizens — every action chained to the same incident ID.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="panel hot" style="margin-top: 24px; padding: 20px 28px;">
+    <div class="panel-label">WHAT THIS REPLACES</div>
+    <div style="display: grid; grid-template-columns: 1.1fr 1.1fr; gap: 36px; align-items: stretch; margin-top: 4px;">
+
+      <div>
+        <div style="font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 4px; color: var(--critical); margin-bottom: 10px;">TODAY · 3 APPS, 3 DATABASES</div>
+        <div style="font-family: 'DM Mono', monospace; font-size: 13px; line-height: 1.7; color: var(--text);">
+          SGSecure <span style="color:var(--muted-soft)">→ phone call →</span> SCDF Ops <span style="color:var(--muted-soft)">→ SMS →</span> myResponder
+        </div>
+        <div style="font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.5;">
+          Citizen reports in app A. Ops re-keys it into system B. Dispatcher pages CFRs in app C. Responder writes outcome into a fourth radio log. Same incident, four data entries, four reconciliations, four chances to lose context.
+        </div>
+      </div>
+
+      <div style="border-left: 2px solid var(--border-hot); padding-left: 36px;">
+        <div style="font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 4px; color: var(--success); margin-bottom: 10px;">KAMPUNG KAKI · 1 OBJECT</div>
+        <div style="font-family: 'DM Mono', monospace; font-size: 13px; line-height: 1.7; color: var(--text);">
+          REPORT-281 <span style="color:var(--muted-soft)">→</span> CASE-281 <span style="color:var(--muted-soft)">→</span> EVENT-281 <span style="color:var(--muted-soft)">→</span> AAR-281
+        </div>
+        <div style="font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.5;">
+          One canonical incident object lives on the MQTT broker. Each role reads and writes its own slice. Every state change is timestamped, attributed, and immediately visible to the other two roles. <strong style="color: var(--text);">Audit trail comes free.</strong>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="slide-brand"><span class="dot"></span> KAMPUNG KAKI · CODEEXP G49</div>
+  <div class="slide-number">07 / 15</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SLIDE 08 · LIVE SG DATA SOURCES (TIERED)
+     ════════════════════════════════════════════════════════════ -->
+<section id="s8" class="slide">
+  <div class="slide-eyebrow">PILLAR 04 · IT MUST BE TRUE TO BE USEFUL</div>
+  <h2 class="slide-title">30+ Singapore sources, <span class="accent">tier-gated.</span></h2>
+  <p class="slide-subtitle">Public APIs first, key-gated second, planted client only when nothing else exists. Every chip in the UI traces back to a real source row in the blueprint.</p>
+
+  <div class="grid-3" style="margin-top: 48px;">
+
+    <div class="panel">
+      <div class="panel-label green">TIER A · NO KEY</div>
+      <div class="panel-title">Public, open, free</div>
+      <div class="panel-body" style="font-size: 14px;">
+        <ul>
+          <li class="win">NEA · PSI 24h, PM2.5, rainfall, forecast, lightning</li>
+          <li class="win">data.gov.sg · taxi availability, carpark lots, dengue clusters</li>
+          <li class="win">OneMap basemaps (Grey · Default · Night)</li>
+          <li class="win">RSS · CNA, Straits Times, TODAY, Mothership</li>
+          <li class="win">Reddit · r/singapore, r/SingaporeRaw (trust=low)</li>
+          <li class="win">Telegram <em>t.me/s</em> previews · MothershipSG, AsiaOne, Zaobao</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-label amber">TIER B · API KEY</div>
+      <div class="panel-title">Account-gated, proxied</div>
+      <div class="panel-body" style="font-size: 14px;">
+        <ul>
+          <li>LTA DataMall · incidents, speed bands, MRT alerts, CCTV</li>
+          <li>OneMap themesvc · AED, hospitals, clinics, eldercare</li>
+          <li>OneMap routing · drive / walk / cycle ETA</li>
+          <li>OneMap reverse-geocode · address from lat/lng</li>
+          <li>OpenRouter · LLM for grounded Host AI replies</li>
+        </ul>
+        <div style="margin-top: 12px;"><span class="chip">Keys in backend .env · never shipped to browser</span></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-label">TIER C · PLANTED CLIENT</div>
+      <div class="panel-title">When there's no API at all</div>
+      <div class="panel-body" style="font-size: 14px;">
+        <ul>
+          <li>Telegram MTProto (Telethon) · real account, joined channels, real-time</li>
+          <li>Gov.sg, SCDF, NEA, SPF, MOH, PUB newsrooms · scheduled scrapers</li>
+        </ul>
+        <div style="margin-top: 12px; font-family: 'Fraunces', serif; font-style: italic; color: var(--muted); font-size: 14px;">
+          Designed and documented in BLUEPRINT.md · operator owns the account, agreement is between operator and platform. We do not ship a Tier-C scraper without consent.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row" style="margin-top: 28px;">
+    <div class="panel" style="flex: 2;">
+      <div class="panel-label cyan">FRESHNESS CONTRACT</div>
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px;">
+        <div><div class="kpi-big" style="font-size: 60px;">15s</div><div class="kpi-label">Rainfall poll</div></div>
+        <div><div class="kpi-big" style="font-size: 60px;">60s</div><div class="kpi-label">Traffic incidents</div></div>
+        <div><div class="kpi-big" style="font-size: 60px;">5m</div><div class="kpi-label">News feeds</div></div>
+        <div><div class="kpi-big" style="font-size: 60px;">5m</div><div class="kpi-label">Map layers cache</div></div>
+        <div><div class="kpi-big" style="font-size: 60px;">24h</div><div class="kpi-label">POI themes</div></div>
+      </div>
+    </div>
+    <div class="img-slot" style="flex: 1; min-height: 200px;">
+      <div class="note">Screenshot · source-health panel showing each tier with green/amber state, age in seconds (use the smoke-readiness.png or a clean dev-tools shot of /api/live/snapshot)</div>
+    </div>
+  </div>
+
+  <div class="slide-brand"><span class="dot"></span> KAMPUNG KAKI · CODEEXP G49</div>
+  <div class="slide-number">08 / 15</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SLIDE 09 · CITIZEN FLOW WALKTHROUGH
+     ════════════════════════════════════════════════════════════ -->
+<section id="s9" class="slide">
+  <div class="slide-eyebrow">FLOW 01 · THE FIRST PERSON ON SCENE IS A CIVILIAN</div>
+  <h2 class="slide-title">Citizen · <span class="accent">one tap, one map, one truth.</span></h2>
+
+  <div class="grid-4" style="margin-top: 48px;">
+    <div class="panel">
+      <div class="panel-label">STEP 01</div>
+      <div class="img-slot" style="height: 360px;"><div class="note">feature-shots/01-citizen-sos-category.png — SOS category picker (Medical · Fire · Hazard · Crash · Crime)</div></div>
+      <div class="panel-title" style="font-size: 22px; margin-top: 14px;">Choose category</div>
+      <div class="panel-body" style="font-size: 13px;">L1–L5 severity auto-tagged. GPS captured. Voice or text optional.</div>
+    </div>
+    <div class="panel">
+      <div class="panel-label">STEP 02</div>
+      <div class="img-slot" style="height: 360px;"><div class="note">feature-shots/02-citizen-sos-live.png — live SOS in progress with map ping, assigned responder card</div></div>
+      <div class="panel-title" style="font-size: 22px; margin-top: 14px;">SOS goes live</div>
+      <div class="panel-body" style="font-size: 13px;">MQTT pub QoS-1 to <code style="color:var(--info)">sos/{zone}/{id}</code>. Responders within 800 m–1.5 km notified.</div>
+    </div>
+    <div class="panel">
+      <div class="panel-label">STEP 03</div>
+      <div class="img-slot" style="height: 360px;"><div class="note">feature-shots/05-citizen-report-review.png — citizen report compose, AI helping with severity + evidence checklist</div></div>
+      <div class="panel-title" style="font-size: 22px; margin-top: 14px;">Or file a report</div>
+      <div class="panel-body" style="font-size: 13px;">Photo / video / voice evidence. Reverse-geocoded place name. Routed to ops queue.</div>
+    </div>
+    <div class="panel">
+      <div class="panel-label">STEP 04</div>
+      <div class="img-slot" style="height: 360px;"><div class="note">feature-shots/09-citizen-alerts-nearby.png — citizen alerts panel with AI guidance per alert</div></div>
+      <div class="panel-title" style="font-size: 22px; margin-top: 14px;">Stay informed</div>
+      <div class="panel-body" style="font-size: 13px;">AI advisor on every alert. Subscribe to home zone. Volunteer event sign-up.</div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top: 32px; padding: 22px 32px;">
+    <div class="panel-label cyan">WHAT'S NEW vs. SGSecure</div>
+    <div class="panel-body" style="font-size: 16px;">
+      Reports survive bad networks (queued, replayed). Every alert comes with a <strong>grounded AI explainer</strong>, not just a banner. Volunteer fulfilment is one tap, not a separate sign-up flow.
+    </div>
+  </div>
+
+  <div class="slide-brand"><span class="dot"></span> KAMPUNG KAKI · CODEEXP G49</div>
+  <div class="slide-number">09 / 15</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SLIDE 10 · RESPONDER FLOW
+     ════════════════════════════════════════════════════════════ -->
+<section id="s10" class="slide">
+  <div class="slide-eyebrow">FLOW 02 · CFRs ALREADY EXIST. WE GIVE THEM A COCKPIT.</div>
+  <h2 class="slide-title">Responder · <span class="accent">accept, route, coordinate.</span></h2>
+
+  <div class="grid-4" style="margin-top: 48px;">
+    <div class="panel">
+      <div class="panel-label amber">STEP 01</div>
+      <div class="img-slot" style="height: 360px;"><div class="note">feature-shots/10-responder-shell.png — responder map view with mission board pill, duty-status indicator</div></div>
+      <div class="panel-title" style="font-size: 22px; margin-top: 14px;">Go on duty</div>
+      <div class="panel-body" style="font-size: 13px;">Available · Standby · On-Scene. Status broadcast on the responder topic for ops visibility.</div>
+    </div>
+    <div class="panel">
+      <div class="panel-label amber">STEP 02</div>
+      <div class="img-slot" style="height: 360px;"><div class="note">feature-shots/11-responder-joinable-missions.png — Mission Board with fit-score ranking, distance, ETA chips</div></div>
+      <div class="panel-title" style="font-size: 22px; margin-top: 14px;">Joinable missions</div>
+      <div class="panel-body" style="font-size: 13px;">Fit-scored by role (medic / fire / volunteer), distance, severity. One-tap accept or join case.</div>
+    </div>
+    <div class="panel">
+      <div class="panel-label amber">STEP 03</div>
+      <div class="img-slot" style="height: 360px;"><div class="note">feature-shots/17-responder-case-room.png — case room with member roster, chat thread, Host AI replies</div></div>
+      <div class="panel-title" style="font-size: 22px; margin-top: 14px;">Case room</div>
+      <div class="panel-body" style="font-size: 13px;">Captain, members, status pipeline. Host AI with 13 slash commands. Photo / status updates.</div>
+    </div>
+    <div class="panel">
+      <div class="panel-label amber">STEP 04</div>
+      <div class="img-slot" style="height: 360px;"><div class="note">feature-shots/16-responder-groups-cases.png — groups + closed cases ledger with AAR drafts</div></div>
+      <div class="panel-title" style="font-size: 22px; margin-top: 14px;">Wrap & learn</div>
+      <div class="panel-body" style="font-size: 13px;">Captain closes the case. <code style="color:var(--info)">/host draft aar</code> auto-assembles the after-action report.</div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top: 32px; padding: 22px 32px;">
+    <div class="panel-label amber">WHAT'S NEW vs. myResponder</div>
+    <div class="panel-body" style="font-size: 16px;">
+      The case room is the missing layer. myResponder hands you a pin and a chat thread. Kampung Kaki hands you <strong>roster, captain, AI tool calls, status pipeline, and an AAR draft</strong> — all over MQTT so it survives the network you were dispatched into.
+    </div>
+  </div>
+
+  <div class="slide-brand"><span class="dot"></span> KAMPUNG KAKI · CODEEXP G49</div>
+  <div class="slide-number">10 / 15</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SLIDE 11 · OPS FLOW
+     ════════════════════════════════════════════════════════════ -->
+<section id="s11" class="slide">
+  <div class="slide-eyebrow">FLOW 03 · ONE OPERATOR, FIFTEEN INCIDENTS, ONE SCREEN</div>
+  <h2 class="slide-title">Ops · <span class="accent">verify · dispatch · zone-broadcast.</span></h2>
+
+  <div class="grid-4" style="margin-top: 48px;">
+    <div class="panel">
+      <div class="panel-label cyan">STEP 01</div>
+      <div class="img-slot" style="height: 360px;"><div class="note">feature-shots/19-ops-report-queue.png — incoming citizen reports queued with corroboration count</div></div>
+      <div class="panel-title" style="font-size: 22px; margin-top: 14px;">Triage reports</div>
+      <div class="panel-body" style="font-size: 13px;">Pending / Claimed / Verified. Corroboration score from independent citizens. Claim → Verify → Declare.</div>
+    </div>
+    <div class="panel">
+      <div class="panel-label cyan">STEP 02</div>
+      <div class="img-slot" style="height: 360px;"><div class="note">feature-shots/25-ops-dispatch.png — dispatch dock with responder candidates scored by distance + role fit</div></div>
+      <div class="panel-title" style="font-size: 22px; margin-top: 14px;">Dispatch</div>
+      <div class="panel-body" style="font-size: 13px;">Sort responders by haversine distance and role match. Assign with one click; case room auto-formed.</div>
+    </div>
+    <div class="panel">
+      <div class="panel-label cyan">STEP 03</div>
+      <div class="img-slot" style="height: 360px;"><div class="note">feature-shots/23-ops-zones.png + 24-ops-zone-created.png — polygon drawer with severity ring, just-created zone overlay</div></div>
+      <div class="panel-title" style="font-size: 22px; margin-top: 14px;">Draw a zone</div>
+      <div class="panel-body" style="font-size: 13px;">Freehand polygon on the OneMap basemap. Auto-tagged with planning area + risk tier.</div>
+    </div>
+    <div class="panel">
+      <div class="panel-label cyan">STEP 04</div>
+      <div class="img-slot" style="height: 360px;"><div class="note">feature-shots/26-ops-broadcast.png + 27-ops-broadcast-queued.png — broadcast composer targeting zone, push receipts</div></div>
+      <div class="panel-title" style="font-size: 22px; margin-top: 14px;">Broadcast</div>
+      <div class="panel-body" style="font-size: 13px;">Zone-targeted notification, MQTT-fanned to citizens + responders in the polygon. Receipts tracked per subscriber.</div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top: 32px; padding: 22px 32px;">
+    <div class="panel-label cyan">WHAT'S NEW vs. SG Alert</div>
+    <div class="panel-body" style="font-size: 16px;">
+      SG Alert is one-way cell broadcast — useful, but blind. Kampung Kaki ops can broadcast to a drawn polygon, receive ACKs per device, and watch volunteer pickups happen on the same map in real time. <strong>Bidirectional, geo-scoped, receipt-tracked.</strong>
+    </div>
+  </div>
+
+  <div class="slide-brand"><span class="dot"></span> KAMPUNG KAKI · CODEEXP G49</div>
+  <div class="slide-number">11 / 15</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SLIDE 12 · TECH STACK & IMPLEMENTATION
+     ════════════════════════════════════════════════════════════ -->
+<section id="s12" class="slide">
+  <div class="slide-eyebrow">UNDER THE HOOD</div>
+  <h2 class="slide-title">Boring stack, <span class="accent">picked on purpose.</span></h2>
+  <p class="slide-subtitle">We chose mature, debuggable parts. Anything exotic gets caged behind a tier so it can't take the whole system down.</p>
+
+  <div class="grid-3" style="margin-top: 48px;">
+
+    <div class="panel">
+      <div class="panel-label">FRONTEND</div>
+      <div class="panel-body" style="font-size: 14px;">
+        <ul>
+          <li class="win">React 18 · TypeScript 5 · Vite</li>
+          <li class="win">TailwindCSS 3 · brutalist design tokens</li>
+          <li class="win">MapLibre GL · OneMap raster tiles</li>
+          <li class="win">Lucide icons</li>
+          <li class="win">Role-aware single-page shell</li>
+          <li class="win">Vercel Edge deploy · &lt; 80 KB initial JS</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-label amber">BACKEND</div>
+      <div class="panel-body" style="font-size: 14px;">
+        <ul>
+          <li class="win">FastAPI · Python 3.12</li>
+          <li class="win">Redis · state + pub/sub channels</li>
+          <li class="win">Mosquitto · MQTT 5 broker · QoS 1 retained</li>
+          <li class="win">WebSocket bridge for browsers (MQTT-over-WS)</li>
+          <li class="win">Vercel serverless · <code style="color:var(--info)">/api/live/*</code> + <code style="color:var(--info)">/api/host/ask</code></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-label cyan">AI · DATA · OBS</div>
+      <div class="panel-body" style="font-size: 14px;">
+        <ul>
+          <li class="win">OpenAI GPT-5.5 · temperature 0.2</li>
+          <li class="win">Grounding context capped at 4.8 KB</li>
+          <li class="win">OneMap · LTA DataMall · NEA · data.gov.sg</li>
+          <li class="win">RSS + Telegram (Tier A · no auth)</li>
+          <li class="win">Source-health probe surface · per-tile age in seconds</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row" style="margin-top: 32px;">
+    <div class="panel" style="flex: 1.4;">
+      <div class="panel-label">DESIGN PRINCIPLES</div>
+      <div class="grid-2" style="gap: 12px 28px; font-size: 15px;">
+        <div><strong style="color: var(--critical);">1 · Never invent.</strong> Missing data renders as "unavailable" — never fabricated.</div>
+        <div><strong style="color: var(--critical);">2 · Live or empty.</strong> If a feed is down, the panel says so; we never seed-fake.</div>
+        <div><strong style="color: var(--critical);">3 · Role isolation.</strong> Citizen never sees ops-only widgets. Even in dev.</div>
+        <div><strong style="color: var(--critical);">4 · One-handed UX.</strong> Every primary action is thumb-reachable on a phone.</div>
+        <div><strong style="color: var(--critical);">5 · Brutalist clarity.</strong> Hard borders, big chips, zero ambiguity in an emergency.</div>
+        <div><strong style="color: var(--critical);">6 · Source-traceable.</strong> Every AI reply chips out the tools it called.</div>
+      </div>
+    </div>
+    <div class="img-slot" style="flex: 1; min-height: 220px;">
+      <div class="note">Logo wall · React · Vite · FastAPI · Redis · Mosquitto · Vercel · OneMap · OpenRouter (use simple monochrome SVG marks on dark bg)</div>
+    </div>
+  </div>
+
+  <div class="slide-brand"><span class="dot"></span> KAMPUNG KAKI · CODEEXP G49</div>
+  <div class="slide-number">12 / 15</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SLIDE 13 · ARCHITECTURE DIAGRAM
+     ════════════════════════════════════════════════════════════ -->
+<section id="s13" class="slide">
+  <div class="slide-eyebrow">ARCHITECTURE</div>
+  <h2 class="slide-title">How the bits <span class="accent">actually flow.</span></h2>
+
+  <div class="img-slot" style="height: 640px; margin-top: 20px;">
+    <div class="note" style="font-size: 16px; max-width: 80%;">
+      Architecture diagram (full-width, dark background, red + cyan + amber strokes).<br><br>
+      <strong>Top row · Clients:</strong> [Citizen browser] · [Responder phone] · [Ops console]<br>
+      <strong>Bridge:</strong> all three connect over <code>wss://</code> (MQTT-over-WebSocket).<br><br>
+      <strong>Core:</strong> [Mosquitto MQTT 5 broker · QoS 1 retained] ↔ [FastAPI app] ↔ [Redis · state + pub/sub].<br><br>
+      <strong>Edge fns (Vercel):</strong><br>
+      &nbsp;&nbsp;<code>/api/host/ask</code> → OpenAI GPT-5.5<br>
+      &nbsp;&nbsp;<code>/api/live/snapshot</code> → NEA · data.gov.sg<br>
+      &nbsp;&nbsp;<code>/api/live/map-layers</code> → OneMap themes · LTA DataMall<br>
+      &nbsp;&nbsp;<code>/api/live/revgeocode</code> → OneMap reverse-geocode<br><br>
+      <strong>Tier C workers:</strong> Telethon MTProto · gov.sg / SCDF / NEA / SPF / MOH / PUB scrapers → Redis.<br><br>
+      Show arrows: SOS pub from citizen → broker → fan-out to responders + ops; AI reply path; Source-health probe loop. Use mermaid C4-container or excalidraw, export PNG.
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 20px; gap: 20px;">
+    <span class="chip crit">CITIZEN</span>
+    <span class="arrow">→</span>
+    <span class="chip">MQTT BROKER</span>
+    <span class="arrow">→</span>
+    <span class="chip amber">RESPONDER</span>
+    <span class="arrow">+</span>
+    <span class="chip cyan">OPS</span>
+    <span class="arrow">↻</span>
+    <span class="chip green">REDIS · STATE</span>
+    <span class="arrow">→</span>
+    <span class="chip">/api/host/ask · OPENAI GPT-5.5</span>
+  </div>
+
+  <div class="slide-brand"><span class="dot"></span> KAMPUNG KAKI · CODEEXP G49</div>
+  <div class="slide-number">13 / 15</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SLIDE 14 · DEMO VIDEO
+     ════════════════════════════════════════════════════════════ -->
+<section id="s14" class="slide">
+  <div class="slide-eyebrow">SEE IT MOVE</div>
+  <h2 class="slide-title">90 seconds · <span class="accent">end-to-end live.</span></h2>
+
+  <div class="row" style="margin-top: 20px; align-items: stretch; flex: 1; min-height: 0;">
+
+    <div class="img-slot" style="flex: 2; height: 100%;">
+      <div class="note" style="font-size: 15px; max-width: 88%;">
+        Embedded demo video (16:9, 90 s).<br><br>
+        Suggested cuts:<br>
+        00:00 — Auntie Mei taps SOS → category Medical → live ping.<br>
+        00:12 — Daniel the cyclist sees Mission Board notification within 800 m.<br>
+        00:24 — Daniel accepts → case room opens, Host AI replies <code>/host nearest aed</code>.<br>
+        00:42 — Captain Lim at Ops sees corroborated report queue, declares incident.<br>
+        00:58 — Captain Lim draws a zone polygon, broadcasts to citizens inside.<br>
+        01:14 — Auntie Mei receives the targeted broadcast with an AI explainer.<br>
+        01:24 — Captain runs <code>/host draft aar</code>, case closes.<br><br>
+        Replace with <code>&lt;video controls src="media/demo.mp4"&gt;</code> when recorded.
+      </div>
+    </div>
+
+    <div class="col" style="flex: 1; height: 100%; gap: 20px;">
+      <div class="panel hot" style="flex: 1; display: flex; flex-direction: column; padding: 24px 28px;">
+        <div class="panel-label">SCAN TO WATCH</div>
+        <div class="img-slot" style="flex: 1; min-height: 0; margin-top: 4px;">
+          <div class="note">QR → demo video URL<br>(YouTube unlisted or Drive)</div>
+        </div>
+      </div>
+      <div class="panel" style="flex: 1; display: flex; flex-direction: column; padding: 24px 28px;">
+        <div class="panel-label cyan">SCAN TO TRY LIVE</div>
+        <div class="img-slot" style="flex: 1; min-height: 0; margin-top: 4px;">
+          <div class="note">QR → quick-aid-sg.vercel.app<br>try the roles on your phone</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="slide-brand"><span class="dot"></span> KAMPUNG KAKI · CODEEXP G49</div>
+  <div class="slide-number">14 / 15</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SLIDE 15 · CLOSING / SAVE UP
+     ════════════════════════════════════════════════════════════ -->
+<section id="s15" class="slide cover">
+  <div class="aurora"></div>
+  <div class="grid-bg"></div>
+
+  <div style="position: relative; z-index: 2; display: flex; flex-direction: column; height: 100%; justify-content: space-between;">
+
+    <div>
+      <div class="slide-eyebrow">THE ASK</div>
+      <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 160px; line-height: 0.88; letter-spacing: 4px; color: var(--text); text-shadow: 0 6px 0 #000;">
+        SAVE EACH <span style="color: var(--critical); text-shadow: 0 0 48px rgba(255,59,48,0.6), 0 6px 0 #000;">OTHER.</span>
+      </h2>
+      <p style="font-family: 'Fraunces', serif; font-style: italic; font-size: 30px; color: var(--muted); margin-top: 20px; max-width: 1500px; line-height: 1.3;">
+        SG Alert tells you when. myResponder tells the trained few what. Kampung Kaki tells <strong style="color: var(--text); font-style: normal;">everyone how</strong> — and keeps telling, even when the network can't.
+      </p>
+    </div>
+
+    <div class="grid-3" style="gap: 28px;">
+
+      <div class="panel hot">
+        <div class="panel-label">TRY IT</div>
+        <div class="img-slot" style="height: 180px; margin-bottom: 10px;">
+          <div class="note">QR → quick-aid-sg.vercel.app</div>
+        </div>
+        <div style="text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; color: var(--critical);">quick-aid-sg.vercel.app</div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-label cyan">READ IT</div>
+        <div class="img-slot" style="height: 180px; margin-bottom: 10px;">
+          <div class="note">QR → GitHub repo / BLUEPRINT.md</div>
+        </div>
+        <div style="text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px; color: var(--info);">github.com/[org]/kampung-kaki</div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-label amber">THE TEAM</div>
+        <div style="padding: 10px 0 0;">
+          <div style="font-family: 'Bebas Neue', sans-serif; font-size: 56px; letter-spacing: 4px; line-height: 1; color: var(--text); margin-bottom: 6px;">GROUP 49</div>
+          <div style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase;">
+            CodeExp 2026<br>
+            Open Category<br>
+            Problem Statement 3
+          </div>
+          <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; color: var(--muted);">
+            Built end-to-end in &lt; 6 weeks.<br>Live, deployed, mobile-first.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+      <div style="font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; color: var(--text); max-width: 920px;">
+        "When the towers fall and the apps go dark, the kampung stays on its feet."
+      </div>
+      <div style="text-align: right;">
+        <div style="font-family: 'Bebas Neue', sans-serif; font-size: 60px; letter-spacing: 6px; color: var(--critical); text-shadow: 0 0 32px rgba(255,59,48,0.55);">THANK YOU.</div>
+        <div style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 4px; color: var(--muted); margin-top: 4px;">QUESTIONS WELCOME — WE BUILT THIS TO BE TAKEN APART.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="slide-number">15 / 15</div>
+</section>
+
+</main>
+
+<script>
+  // Optional keyboard nav: arrow keys jump between slides
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let current = 0;
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown') {
+      e.preventDefault();
+      current = Math.min(current + 1, slides.length - 1);
+      slides[current].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      current = Math.max(current - 1, 0);
+      slides[current].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (e.key === 'Home') {
+      current = 0; slides[0].scrollIntoView({ behavior: 'smooth' });
+    } else if (e.key === 'End') {
+      current = slides.length - 1; slides[current].scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+  // Track current slide on scroll for arrow-key sync
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) current = slides.indexOf(entry.target);
+    });
+  }, { threshold: 0.5 });
+  slides.forEach((s) => obs.observe(s));
+</script>
+
+</body>
+</html>

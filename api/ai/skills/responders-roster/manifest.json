@@ -1,0 +1,21 @@
+{
+  "id": "responders-roster",
+  "version": "1.0.0",
+  "tier": 1,
+  "primitive": true,
+  "description": "List responders currently on duty with their status and declared skills, from the live operating picture. Cache-only.",
+  "keywords": ["responders", "roster", "on duty", "availability", "who", "team"],
+  "requires": { "binaries": [], "python": [], "env": [], "network": false, "job_dir": false },
+  "inputs": [],
+  "output_type": "json",
+  "output_ext": null,
+  "destructive": false,
+  "idempotent": true,
+  "confirm": "never",
+  "invoke": "node skill.mjs",
+  "check": null,
+  "timeout_ms": 5000,
+  "max_retries": 0,
+  "presentation": "text",
+  "imported_from": null
+}

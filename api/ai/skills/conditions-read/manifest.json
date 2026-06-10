@@ -1,0 +1,23 @@
+{
+  "id": "conditions-read",
+  "version": "1.0.0",
+  "tier": 1,
+  "primitive": true,
+  "description": "Read the latest cached neighbourhood conditions (air temp, PSI, rainfall, wind, dengue, traffic) — instant, off the timer-refreshed snapshot. Pass fresh=true ONLY if the user explicitly asks for newer data.",
+  "keywords": ["conditions", "weather", "psi", "air", "rain", "wind", "dengue", "traffic", "now"],
+  "requires": { "binaries": [], "python": [], "env": [], "network": true, "job_dir": false },
+  "inputs": [
+    { "name": "fresh", "type": "bool", "description": "Force a new fetch instead of reading the last cached snapshot. Only when the user explicitly asks for updated/new readings.", "required": false, "default": false }
+  ],
+  "output_type": "json",
+  "output_ext": null,
+  "destructive": false,
+  "idempotent": true,
+  "confirm": "never",
+  "invoke": "node skill.mjs",
+  "check": null,
+  "timeout_ms": 9000,
+  "max_retries": 1,
+  "presentation": "text",
+  "imported_from": null
+}

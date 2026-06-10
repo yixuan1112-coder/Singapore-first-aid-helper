@@ -1,0 +1,103 @@
+{
+  "story": "quick-showcase",
+  "scenes": [
+    {
+      "scene": "qs-setup-1",
+      "voice": "director",
+      "reference": "7_juilliard",
+      "file": "/home/dinosaur/Project/KampungKaki/CODEEXP/public/demo/voice/quick/qs-setup-1.wav",
+      "durationSeconds": 4.16
+    },
+    {
+      "scene": "qs-setup-2",
+      "voice": "director",
+      "reference": "7_juilliard",
+      "file": "/home/dinosaur/Project/KampungKaki/CODEEXP/public/demo/voice/quick/qs-setup-2.wav",
+      "durationSeconds": 3.6
+    },
+    {
+      "scene": "qs-setup-3",
+      "voice": "director",
+      "reference": "7_juilliard",
+      "file": "/home/dinosaur/Project/KampungKaki/CODEEXP/public/demo/voice/quick/qs-setup-3.wav",
+      "durationSeconds": 6.08
+    },
+    {
+      "scene": "qs-intro",
+      "voice": "director",
+      "reference": "7_juilliard",
+      "file": "/home/dinosaur/Project/KampungKaki/CODEEXP/public/demo/voice/quick/qs-intro.wav",
+      "durationSeconds": 6
+    },
+    {
+      "scene": "qs-pelita",
+      "voice": "resident",
+      "reference": "7_juilliard",
+      "file": "/home/dinosaur/Project/KampungKaki/CODEEXP/public/demo/voice/quick/qs-pelita.wav",
+      "durationSeconds": 5.84
+    },
+    {
+      "scene": "qs-conditions",
+      "voice": "director",
+      "reference": "7_juilliard",
+      "file": "/home/dinosaur/Project/KampungKaki/CODEEXP/public/demo/voice/quick/qs-conditions.wav",
+      "durationSeconds": 7.52
+    },
+    {
+      "scene": "qs-pelita-reply",
+      "voice": "director",
+      "reference": "7_juilliard",
+      "file": "/home/dinosaur/Project/KampungKaki/CODEEXP/public/demo/voice/quick/qs-pelita-reply.wav",
+      "durationSeconds": 6
+    },
+    {
+      "scene": "qs-responder",
+      "voice": "responder",
+      "reference": "2_amateur",
+      "file": "/home/dinosaur/Project/KampungKaki/CODEEXP/public/demo/voice/quick/qs-responder.wav",
+      "durationSeconds": 4.72
+    },
+    {
+      "scene": "qs-sos",
+      "voice": "resident",
+      "reference": "7_juilliard",
+      "file": "/home/dinosaur/Project/KampungKaki/CODEEXP/public/demo/voice/quick/qs-sos.wav",
+      "durationSeconds": 7.28
+    },
+    {
+      "scene": "qs-bekal",
+      "voice": "director",
+      "reference": "7_juilliard",
+      "file": "/home/dinosaur/Project/KampungKaki/CODEEXP/public/demo/voice/quick/qs-bekal.wav",
+      "durationSeconds": 5.68
+    },
+    {
+      "scene": "qs-bekal-reply",
+      "voice": "director",
+      "reference": "7_juilliard",
+      "file": "/home/dinosaur/Project/KampungKaki/CODEEXP/public/demo/voice/quick/qs-bekal-reply.wav",
+      "durationSeconds": 6.8
+    },
+    {
+      "scene": "qs-ops",
+      "voice": "ops",
+      "reference": "4_classically_trained",
+      "file": "/home/dinosaur/Project/KampungKaki/CODEEXP/public/demo/voice/quick/qs-ops.wav",
+      "durationSeconds": 8.4
+    },
+    {
+      "scene": "qs-finale",
+      "voice": "director",
+      "reference": "7_juilliard",
+      "file": "/home/dinosaur/Project/KampungKaki/CODEEXP/public/demo/voice/quick/qs-finale.wav",
+      "durationSeconds": 5.6
+    },
+    {
+      "scene": "qs-outro",
+      "voice": "director",
+      "reference": "7_juilliard",
+      "file": "/home/dinosaur/Project/KampungKaki/CODEEXP/public/demo/voice/quick/qs-outro.wav",
+      "durationSeconds": 6.08
+    }
+  ]
+}
